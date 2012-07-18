@@ -1,0 +1,55 @@
+= requisitos =
+== recursos ==
+Deve-se permitir o cadastramento de recursos.
+Os recursos são a base da estrutura na construção do orçamento de obra. Todos os serviços prestados em uma obra são compostos por outros serviços e/ou composição de recursos. Um serviço de alvernaria por exemplo pode envolver composições tais como massa para alvenaria comum (areia + cimento + água + mão-de-obra), tijolo e mão de obra para sua construção.
+Os recursos são divididos entre material, mão-de-obra (direta e indireta) e equipamento.
+
+Algumas informações são comuns a todos os recursos tais como:
+* Codigo;
+* Descrição;
+* Unidade; e
+* Valor/Unidade.
+
+=== material ===
+O material é um dos recursos utilizados em uma obra. São expressos em unidades (kg, m3, m2, ml, etc) e tem seu valor estipulado por unidade. Um exemplo de material seria o próprio cimento citado anteriormente, ou a areia, ou a água, ou cal, etc.
+
+=== mão-de-obra ===
+A mão de obra tem seu valor definido por H/H (hora/homem). Para a mão-de-obra ainda temos a discriminação do tipo de serviço prestado pois o valor pode variar de um tipo de serviço para outro.
+A mão de obra ainda pode apresentar um custo por tempo extra de trabalho, que também é medido em H/H.
+
+=== equipamento ===
+Os equipamentos também tem seu custo estipulado por unidade, que neste caso é uma unidade temporal, defininda por hora, mês, semana, como um aluguel por hora ou por mês.
+
+O equipamento pode ser classificado como sendo um recurso do tipo interno ou externo. Sendo um recurso interno ele teria seu custo reduzido para somente o custo de seu funcionamento, já o externo além dos custos de funcionamento também estariam incluídos os custos de uso por unidade de tempo (aluguel).
+
+== composição ==
+A composição é a integração de recursos e quisitos que em conjunto com outras composições representarão um serviço.
+A composição de serviços contém os seguintes componentes:
+* Recursos (material, mão de obra, equipamento);
+* % de taxação; 
+* % de tributação;
+* % de Perdas; e
+* % Considerações;
+
+== serviço ==
+O serviço é constituído de composições e/ou serviços.
+Um serviço é a representação do que será feito, e o mesmo já inclui em si todos os recursos desprendidos e custos.
+Um serviço basicamente deve ser classificado por:
+* Categoria do serviço;
+* Subcategoria do serviço (diretamente ligada à categoria) comumente clamado de clã na área de engenharia;
+* Família (diretamente ligada à subcategoria);
+* Código;
+* Descrição;
+
+== orçamento ==
+O orçamento é feito em forma de projeto, sendo que os dados utilizados como base podem ser alterados para o projeto (mantendo-se os dados base para que outros projetos possam utilizar).
+
+Poderá ser listado da forma "Curva ABC¹".
+
+== glossário ==
+=== Curva ABC ===
+A curva ABC é um orçamento organizado de modo a destacar os itens - insumos, mão de obra e equipamentos - que mais pesam no custo total de uma obra ou de um serviço. Assim, os elementos mais relevantes da tabela aparecem logo nas primeiras linhas, facilitando sua visualização e controle.
+
+Neste tipo de apresentação do orçamento, a coluna mais importante é a que mostra o preço total dos itens descritos na tabela. Com base nesse critério, os elementos são distribuídos em ordem decrescente - os valores maiores em cima e os menores embaixo.
+
+Com esse tipo de organização, o construtor consegue visualizar os materiais e serviços mais importantes caso precise reduzir os custos da obra. Além disso, ela ajuda a dividir responsabilidades: o gerente da obra, mais experiente, deve acompanhar de perto a negociação dos insumos e serviços mais caros do orçamento. A negociação e compra dos itens mais baratos da obra podem acontecer de forma menos rígorosa.
