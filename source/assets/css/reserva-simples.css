@@ -1,0 +1,56 @@
+/* 
+    Document   : reserva-simples
+    Created on : 27/04/2012, 14:28:11
+    Author     : mjustino
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#step-aluguel-simples{
+    font-family: Helvetica, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    height: 40px;    
+    color: #697d6f;
+    /*    background: #ffebd2;*/
+    /*    border: 1px solid #ff8d00;    */
+}
+
+#step-aluguel-simples ul{
+    list-style-type: none;    
+}
+
+#step-aluguel-simples li{
+    text-align: right;
+    /*    text-shadow: 1px 1px #000;*/
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    color: #0072bd;
+    background-image: url('../../assets/images/view/reserva-simples/step.png');
+    background-repeat: no-repeat;
+    background-position-x: -20px;
+    float: left;    
+}
+
+#step-aluguel-simples li.disabled{
+    text-shadow: none;
+    color: #b2b2b2;
+    background: url('../../assets/images/view/reserva-simples/step-disabled.png') no-repeat #fff;
+    background-position-x: -20px;
+    border: 0px;
+}
+
+#step-aluguel-simples a:link{
+    text-decoration: none;
+}
+
+#page-aluguel-simples{
+    clear: both;
+    padding: 20px 10px;
+}
+

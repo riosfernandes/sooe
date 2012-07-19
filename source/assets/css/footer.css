@@ -1,0 +1,43 @@
+/* 
+    Document   : footer
+    Created on : 10/04/2012, 16:43:35
+    Author     : mjustino
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root {
+    display: block;    
+}
+
+#footer{
+    clear:both;
+    background: #ececec;
+    font-family: Ubuntu, Tahoma, 'Segoe UI', Helvetica;
+}
+
+#footer .links{
+    font-size: 1em;
+    color: #A70000;
+    padding: 5px;
+    width: 30%;
+    float: left;    
+}
+
+#footer .links a:link{
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-block;
+    color: #000;
+    padding: 10px;
+}
+
+#footer .content{
+    background: #ececec;
+    text-align: right;
+    padding: 2px;
+    font-size: 10px;
+    font-style: normal;
+    overflow: visible;
+}
+

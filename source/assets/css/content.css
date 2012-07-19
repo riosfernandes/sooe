@@ -1,0 +1,257 @@
+/* 
+    Document   : content
+    Created on : 04/04/2012, 12:07:11
+    Author     : mjustino
+    Description:
+    Purpose of the stylesheet follows.
+*/
+
+::selection{ background-color: #E13300; color: white; }
+::moz-selection{ background-color: #E13300; color: white; }
+::webkit-selection{ background-color: #E13300; color: white; }
+
+#contents{
+    margin: 0px 20px 10px 20px;
+    clear: both;
+}
+
+#contents a {
+    color: #003399;
+    background-color: transparent;
+    font-weight: normal;
+}
+
+#contents h1 {
+    color: #444;
+    background-color: transparent;
+    border-bottom: 1px solid #D0D0D0;
+    font-size: 19px;
+    font-weight: normal;
+    margin: 0 0 14px 0;
+    padding: 14px 15px 10px 15px;
+}
+
+#contents code {
+    font-family: Consolas, Monaco, Courier New, Courier, monospace;
+    font-size: 12px;
+    background-color: #f9f9f9;
+    border: 1px solid #D0D0D0;
+    color: #002166;
+    display: block;
+    margin: 14px 0 14px 0;
+    padding: 12px 10px 12px 10px;
+}
+
+#contents #body{    
+    margin: 0 10px 0 10px;
+}
+
+#contents p.footer{
+    text-align: right;
+    font-size: 11px;
+    border-top: 1px solid #D0D0D0;
+    line-height: 32px;
+    padding: 0 10px 0 10px;
+    margin: 20px 0 0 0;
+}
+
+#contents #container{
+    margin: 0 0 0 0;
+    /*border: 1px solid #D0D0D0;*/
+    /*-webkit-box-shadow: 0 0 8px #D0D0D0;*/
+}
+
+#form{    
+    padding: 0;
+    font: 13px normal Tahoma, 'Segoe UI', Verdana, Helvetica, Arial, sans-serif;
+    margin: 0 0 0 0;
+}
+
+#form div.block{
+    width: 100%;
+    border: 1px solid #525a73;
+    padding: 5px;
+    background: #dee7e7;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    line-height: 30px;
+}
+
+#form div.block #label-region{
+    float: left;
+    width: 25%;
+    text-align: right;   
+}
+
+#form div.block #input-region{
+    float: left;
+    width: 70%;
+    margin-left: 5px;
+}
+
+#form div.clear{
+    clear: both;
+}
+
+#form .button{
+    margin-left: 25.3%;
+}
+
+table{
+    width: 100%;
+}
+
+th{
+    font-weight: bold;
+    text-align: left;
+}
+
+.tableLink{
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    width: 24px;
+}
+
+input.add{
+    border: 0;
+    opacity: 0.4;
+    background: url('../../assets/images/view/reserva-simples/add.png') no-repeat center;
+    width: 24px;
+    line-height: 20px;
+}
+
+input.remove{
+    border: 0;
+    opacity: 0.4;
+    background: url('../../assets/images/view/reserva-simples/remove.png') no-repeat center;
+    width: 24px;
+    line-height: 20px;
+}
+
+.tableLine{
+    
+}
+
+.tableItemText{
+    text-align: left;    
+}
+
+.block input[type=text],
+.block input[type=password],
+.block textarea,
+.block select{
+    border: 1px double #CCC;
+    padding: 3px 6px;
+    outline: none;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    -moz-box-shadow: -1px 1px 0px #fff;  FF3.5+ ;
+    -webkit-box-shadow: -1px 1px 0px #fff;  Saf3.0+, Chrome ;
+    box-shadow: -1px 1px 0px #fff;  Opera 10.5, IE 9.0 ;
+    color: #555;
+    background-color: #ededed;
+    moz-transition: all 0.3s ease-out;  FF3.7+ ;
+    -o-transition: all 0.3s ease-out;  Opera 10.5 ;
+    -webkit-transition: all 0.3s ease-out;  Saf3.2+, Chrome ;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #444;
+}
+
+.block input[type=text],
+.block input[type=password],
+.block textarea,
+.block select{
+    width: 70%;
+}
+
+.block input[type=password] {
+    padding: 4px;
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+.block input:focus, 
+.block textarea:focus,
+.block select:focus {
+    background-color: #fff;
+}
+
+input.medium {
+    width: 300px;
+}
+
+input.long {
+    width: 500px;
+}
+
+input.full-width {
+    width: 98%;
+}
+
+textarea.large {
+    width: 500px;
+}
+
+.button{
+    font-weight: bold;
+    text-shadow: 0px -1px 1px #fff;
+    margin: 5px;
+    color: #555;
+    -moz-border-radius: 4px; /* FF1+ */;
+    -webkit-border-radius: 4px; /* Saf3-4 */;
+    border-radius: 4px; /* Opera 10.5, IE 9, Saf5, Chrome */;
+    padding: 4px 10px;
+    -moz-box-shadow: 0px 2px 3px #fff inset; /* FF3.5+ */;
+    -webkit-box-shadow: 0px 2px 3px #fff inset; /* Saf3.0+, Chrome */;
+    box-shadow: 0px 2px 3px #fff inset; /* Opera 10.5, IE 9.0 */
+    cursor: pointer;
+    border: 1px #ccc solid;
+    font-size: .9em;
+    background-color: #fff; /* FF3.6 */;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#cccccc')";
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ffffff),color-stop(1, #cccccc));/* Saf4+, Chrome */
+}
+
+a.button:visited {
+    color: #555;
+}
+.top-button {
+    margin: 10px 5px;
+    float: left;
+}
+.button:hover {
+    color: #555;
+    background-color: #eee; /* FF3.6 */;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#aaaaaa')";
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ffffff),color-stop(1, #aaaaaa));/* Saf4+, Chrome */
+}
+.button:active {
+    -moz-box-shadow: 0px -1px 1px #8a8a8a; /* FF3.5+ */;
+    -webkit-box-shadow: 0px -1px 1px #8a8a8a; /* Saf3.0+, Chrome */;
+    box-shadow: 0px -1px 1px #8a8a8a; /* Opera 10.5, IE 9.0 */;
+    border-color: #fff;
+}
+
+#form a:link{
+    text-decoration: none;
+    font-family: Tahoma, Segoe UI, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: darkblue;
+}
+
+#form a:hover{
+    text-decoration: underline;
+}
+
+#contents .error{
+    clear: both;
+    margin: 10px 0;
+    font: 14px normal Helvetica, Arial, sans-serif;
+    padding: 10px;
+    border: 1px solid #d893a1;
+    background: #fbe6f2;    
+}

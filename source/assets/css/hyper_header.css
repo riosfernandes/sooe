@@ -1,0 +1,46 @@
+/* 
+    Document   : hyper_header
+    Created on : 13/04/2012, 15:25:27
+    Author     : mjustino
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#hyper_header{
+    background: #464646;
+    color: #ffffff;
+    height: 30px;
+}
+
+#hyper_header .links{
+    width: 100%;
+    text-align: right;
+}
+
+#hyper_header .links a:link{
+    font-family: Tahoma, Segoe UI, Helvetica;
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-block;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+#hyper_header .links a:hover{
+    background: #e13300;
+}
+
+#hyper_header .links a:visited{
+    font-family: Tahoma, Segoe UI, Helvetica;
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-block;
+    color: #fff;
+    padding: 10px;    
+}
+
