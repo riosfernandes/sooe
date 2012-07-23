@@ -13,7 +13,7 @@ class MY_Non_Public_Controller extends CI_Controller {
     }
 
     public function get_js() {
-        $js_temp = array('navigator', 'footer');
+        $js_temp = array('general', 'navigator', 'side_bar', 'footer');
         $js_files_jquery = array();
 
         foreach ($js_temp as $js) {            
@@ -29,7 +29,7 @@ class MY_Non_Public_Controller extends CI_Controller {
     }
     
     public function get_css() {
-        $css_temp = array('hyper_header', 'header', 'general', 'navigator', 'content', 'footer');
+        $css_temp = array('hyper_header', 'header', 'general', 'navigator', 'side_bar', 'content', 'footer');
         $css_files = array();
 
         foreach ($css_temp as $css) {

@@ -17,7 +17,7 @@ if (!defined('BASEPATH'))
   | path to your installation.
   |
  */
-$config['base_url'] = 'http://localhost:8888/sooe/';
+$config['base_url'] = 'http://localhost:8888/sooe/source/';
 
 /*
   |--------------------------------------------------------------------------

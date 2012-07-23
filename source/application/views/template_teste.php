@@ -21,12 +21,11 @@
                 echo link_tag($cs_crud);
             }
         }// </editor-fold>
-                
         // <editor-fold defaultstate="collapsed" desc="<<:: JS ::>>">
-        if (!isset($js_files)){
+        if (!isset($js_files)) {
             $js_files = array();
-            
-            $js = JSPATH . 'jquery-1.7.1.min.js';
+
+            $js = JSPATH . 'jquery-1.7.2.js';
             $js_files[sha1($js)] = $js;
         }
 
@@ -46,17 +45,23 @@
     </head>
     <body>
         <div id="page">
-            <div id="hyper_header"><?php include_once('hyper_header.php') ?></div>
-            <div id="header"><?php include_once('header.php') ?></div>
-            <div id="navigator"><?php include_once('navigator.php') ?></div>
+            <div id="hyper_header"><?php $this->load->view('hyper_header') ?></div>
+            <div id="header"><?php $this->load->view('header') ?></div>
+            <div id="side_bar"><?php $this->load->view('side_bar') ?></div>
             <div id="contents">
-<?php
-if (isset($subtitle))
-    echo '<h1>' . $subtitle . '</h1>';
-echo($contents)
-?>
+                <?php
+                if (isset($subtitle))
+                    echo '<h1>' . $subtitle . '</h1>';
+                echo($contents)
+                ?>
             </div>
-            <div id="footer"><?php include_once('footer.php') ?></div>
-        </div>        
+            <div id="footer"><?php $this->load->view('footer') ?></div>
+
+            <?php
+//            echo 'Lista de metodos:</br><pre>';
+//            var_dump(debug_backtrace());
+//            exit;
+            ?>
+        </div>
     </body>
 </html>

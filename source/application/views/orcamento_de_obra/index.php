@@ -1,0 +1,1 @@
+<div id="navigator"><?php $this->load->view('orcamento_de_obra/navigator') ?></div>

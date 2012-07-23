@@ -10,6 +10,8 @@ class Welcome extends MY_Non_Public_Controller {
     }
 
     public function index() {
+        $this->template->set('css_files_aditional', array($this->get_css_formatado('welcome')));
+        $this->template->set('js_files_aditional', array($this->get_js_formatado('welcome')));
         $this->template->set('titulo', 'Seja bem vindo');
         $this->template->load('template_teste', 'welcome');
     }
