@@ -1,5 +1,5 @@
 $(function(){    
     $('#btnOrcamentoObra').click(function(){
-       $(location).attr('href', 'orcamento_de_obra/principal');
+       $(location).attr('href', 'orcamento/principal');
     });
 });

@@ -177,20 +177,14 @@ define('FCPATH', str_replace(SELF, '', __FILE__));
 // Name of the "system folder"
 define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
+// <editor-fold defaultstate="collapsed" desc="<<: CONSTANTS :>>">
 define('ASSETSPATH', $assets_path);
 
 define('CSSPATH', $assets_path . "/css/");
 
 define('JSPATH', $assets_path . '/js/');
 
-define('IMAGEPATH', $assets_path . "/images/");
-
-define('THEMA_CRUD', 'flexigrid');
-
-// <editor-fold defaultstate="collapsed" desc="<<: Constantes predefinidas :>> ">
-define('SITUACAO_QUADRA_ID', 1);
-// </editor-fold>
-
+define('IMAGEPATH', $assets_path . "/images/"); // </editor-fold>
 
 // The path to the "application" folder
 if (is_dir($application_folder)) {
@@ -208,6 +202,7 @@ if (is_dir($application_folder)) {
  * LOAD THE DATAMAPPER BOOTSTRAP FILE
  * -------------------------------------------------------------------- *
  */
+// add this, just before the CodeIgniter bootstrap is loaded
 require_once APPPATH . 'third_party/datamapper/bootstrap.php';
 
 /*

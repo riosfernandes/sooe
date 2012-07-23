@@ -1,4 +1,4 @@
-    <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'template', 'datamapper', 'grocery_CRUD','session');
+$autoload['libraries'] = array('database', 'session' ,'datamapper', 'template');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'template', 'datamapper', 'grocery_CR
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form','html', 'call_view', 'date');
+$autoload['helper'] = array('url','form','html','date', 'script');
 
 
 /*

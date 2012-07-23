@@ -1,13 +1,9 @@
-<?php
+<?php (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class MY_Public_Controller extends CI_Controller {
+class MY_Public_Controller extends MY_Controller {
 
     function __construct() {
         parent::__construct();
-        //definir stylesheets para as páginas
-        $this->template->set('styles', array('general', 'hyper_header', 'header', 'navigator', 'content', 'footer'));
-        $this->template->set('js_files_jquery', array('jquery-1.7.2', 'jquery.tools.min', 'navigator', 'footer'));
-        $this->template->set('js_files_aditional', array());
     }
 
 }
