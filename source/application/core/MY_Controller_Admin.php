@@ -10,13 +10,13 @@ class MY_Controller_Admin extends MY_Controller {
 
     private function _check_database() {
 
-        if (ENVIRONMENT !== 'development')
-            return;
-
-        // Special auto-setup routine
-        if (!$this->CI->db->table_exists('usuario')) {
-            redirect('install/reset_warning');
-        }
+//        if (ENVIRONMENT !== 'development')
+//            return;
+//
+//        // Special auto-setup routine
+//        if (!$this->CI->db->table_exists('usuario')) {
+//            redirect('install/reset_warning');
+//        }
     }
 
 }

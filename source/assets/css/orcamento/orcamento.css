@@ -1,2 +1,21 @@
-.ui-autocomplete-loading { background: white url('../../../assets/images/ui-anim.basic.16x16.gif') right center no-repeat; }
-#city { width: 25em; }
+.ui-autocomplete-loading { 
+    background: white url('../../../assets/images/ui-anim.basic.16x16.gif') right center no-repeat; 
+}
+#city { 
+    width: 25em; 
+}
+input.add{
+    border: 0;
+    opacity: 0.4;
+    background: url('../../assets/images/view/reserva-simples/add.png') no-repeat center;
+    width: 24px;
+    line-height: 20px;
+}
+
+input.remove{
+    border: 0;
+    opacity: 0.4;
+    background: url('../../assets/images/view/reserva-simples/remove.png') no-repeat center;
+    width: 24px;
+    line-height: 20px;
+}

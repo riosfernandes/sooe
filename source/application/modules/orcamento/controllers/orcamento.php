@@ -12,9 +12,9 @@ class Orcamento extends MY_Non_Public_Controller {
     }
 
     public function index() {        
-        $this->data['message'] = $this->session->flashdata('message');        
-        $servico = new Servico_model();
-        $this->data['servicos'] = $servico->get_by_active();
+        $this->data['message'] = $this->session->flashdata('message');
+//        $servico = new Servico_model();
+//        $this->data['servicos'] = $servico->get_by_active();
         
         $this->template->set('js_files', array(
             $this->get_js_formatado('orcamento/list'),

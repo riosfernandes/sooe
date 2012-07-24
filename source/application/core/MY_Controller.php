@@ -15,7 +15,7 @@ class MY_Controller extends CI_Controller {
 
         $this->CI = & get_instance();
         $this->session = & $this->CI->session;
-    }    
+    }
 
     /*
      * Retorna um js formatado.

@@ -7,19 +7,31 @@
 </div>
 
 
-<div class="demo">
-
-    <div class="ui-widget">
-        <label for="city">Your city: </label>
+<div class="ui-widget">
+    <div>
+        <label for="city">Serviço</label>
+    </div>
+    <div>
         <input id="city" />
     </div>
+</div>
+<!--
 
-    <div class="ui-widget" style="margin-top:2em; font-family:Arial">
-        Result:
-        <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-    </div>
 
-</div><!-- End demo -->
+<div id="lista-servicos" class="demo">
+
+<?php // echo $this->load->view('list') ?>
+
+</div> End demo 
+
+
+
+
+
+<div class="ui-widget" style="margin-top:2em; font-family:Arial">
+    Result:
+    <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+</div>-->
 
 
 <div id="projeto-servicos">
