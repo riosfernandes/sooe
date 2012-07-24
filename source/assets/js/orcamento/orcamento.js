@@ -1,44 +1,34 @@
 $(function(){
-    //    $('#txtServico').keydown(function(){
-    //        if($(this).val().length >= 3){            
-    //            var texto = $(this).val();
-    //            $('#filtro').load('orcamento/orcamento/filtrar/', {
-    //                texto:texto
-    //            });
-    //        }
-    //    });
-
     function log( message ) {
         $( "<div/>" ).text( message ).prependTo( "#log" );
         $( "#log" ).scrollTop( 0 );
     }
 
     $( "#city" ).autocomplete({
-        source: function( request, response ) {            
+        source: function( request, response ) {
             $.ajax({
-                url: "http://ws.geonames.org/searchJSON",
-//                url: "find_servico",
-                dataType: "jsonp",
+                //                url: "http://ws.geonames.org/searchJSON",
+                url: "orcamento/find_servico",
+                type: 'POST',
+                dataType: "json",
                 data: {
-                    featureClass: "P",
-                    style: "full",
-                    maxRows: 12,
-                    name_startsWith: request.term
+                    'name': request.term
                 },
                 success: function( data ) {
-                    response( $.map( data.geonames, function( item ) {
+                    response( $.map( data.servico, function( item ) {
                         return {
-                            label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                            value: item.name
+                            label: item.sco + '  ::  ' + item.descricao,
+                            value: item.descricao,
+                            id: item.id
                         }
                     }));
                 }
             });
         },
-        minLength: 2,
+        minLength: 3,
         select: function( event, ui ) {
             log( ui.item ?
-                "Selected: " + ui.item.label :
+                "Selected: " + ui.item.label + ui.item.id :
                 "Nothing selected, input was " + this.value);
         },
         open: function() {
@@ -48,7 +38,4 @@ $(function(){
             $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
         }
     });
-
-
-    
 });

@@ -73,9 +73,21 @@ class Orcamento extends MY_Non_Public_Controller {
     }
 
     public function find_servico(){
-        $texto = $this->input->post('texto');
+        $termo = isset($_POST['name'])? $_POST['name'] : '';
         
+        $s = new Servico_model();
+        $s->like('descricao', '%' . $termo . '%');
+                
+        $data['success'] = true;
+        foreach ($s->get() as $r) {
+            $data['servico'][$r->id]['id'] = $r->id;
+            $data['servico'][$r->id]['descricao'] = $r->descricao;
+            $data['servico'][$r->id]['sco'] = $r->sco;            
+        }
         
+        echo json_encode($data);
+        
+        return TRUE;
     }
 }
 
