@@ -34,9 +34,8 @@ $(function(){
                 password        :password
             },
             function(data){
-                if(data.success){
-                    var url = 'welcome';
-                    $(location).attr('href', url);
+                if(data.success){                    
+                    $(location).attr('href', data.url);
                 }
                 else{
                     showLoginErrors([data.message]);

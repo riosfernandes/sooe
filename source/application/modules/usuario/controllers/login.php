@@ -105,7 +105,8 @@ class Login extends MY_Controller_Admin {
 
         $var = array(
             'success' => true,
-            'usuario' => array('login' => $usuario['login'], 'nome' => $usuario['nome'])
+            'usuario' => array('login' => $usuario['login'], 'nome' => $usuario['nome']),
+            'url' => site_url('welcome')
         );
         echo json_encode($var);
         return TRUE;
