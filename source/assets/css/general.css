@@ -5,7 +5,6 @@
     Description:
         Purpose of the stylesheet follows.
 */
-
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     margin: 0;
     padding: 0;
@@ -18,25 +17,68 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
     -webkit-text-size-adjust: 100%;
 }
-
 ol, ul {
     list-style: none;
 }
-
 root { 
     display: block;
 }
-
 body {
     margin: 0px 0px;
     background: #ececec;
     /*margin: 40px;*/
-    font: 13px/20px normal Segoe UI, Helvetica, Arial, sans-serif;
+    font: 13px/20px 'Trebuchet MS', 'Segoe UI', Tahoma, Helvetica;
     color: #4F5155;
 }
-
 #page{
     background: #ffffff;
     margin: 0px 0px;
     min-width: 571px;
+}
+/*/////////////////////////////////////////////////////////////////////////////
+
+    INPUTS
+
+/////////////////////////////////////////////////////////////////////////////*/
+input.field{
+    width: 100%;
+}
+input.button{
+    border-radius: 4px;
+    /* Para Mozilla/Gecko (Firefox etc) */
+/*    background: -moz-linear-gradient(top, #0672ba, #fff) repeat-X;*/
+    /* Para WebKit (Safari, Google Chrome etc) */
+/*    background: -webkit-gradient(linear, left top, left bottom, from(#0672ba), to(#fff)) repeat-X;*/
+    /* Para IE 8 */
+/*    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#0672ba, endColorstr=#FFFFFFFF)";*/
+    /* Para IE 5.5 - 7 */
+/*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0672ba, endColorstr=#FFFFFFFF);*/
+    background: linear-gradient(0deg, #0672ba, #fff);
+}
+input.add{
+    border: 0;
+    opacity: 0.4;
+    background: url('../../assets/images/view/reserva-simples/add.png') no-repeat center;
+    width: 24px;
+    line-height: 20px;
+}
+input.remove{
+    border: 0;
+    opacity: 0.4;
+    background: url('../../assets/images/view/reserva-simples/remove.png') no-repeat center;
+    width: 24px;
+    line-height: 20px;
+}
+/*/////////////////////////////////////////////////////////////////////////////
+
+    LOG's
+
+/////////////////////////////////////////////////////////////////////////////*/
+.log{
+    border: 2px #B81010 solid;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 20px;
+    background: linear-gradient(0deg, #eeeeee, #fff);
+    display: none;
 }

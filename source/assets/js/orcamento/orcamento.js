@@ -1,6 +1,6 @@
 $(function(){    
-    $('#projeto-servicos').hide();
-    
+//    $('#log').hide();
+//    $('#projeto-servicos').hide();    
     
     /* método para pesquisar e autocompletar
      * um serviço no campo e sua inclusão no
@@ -44,11 +44,20 @@ $(function(){
     
     function addServico( item ) {
         if(item){
-            var table = $('#table-servicos');            
-            var row = '<tr><td><input id="' + item.id + '" type="button" item="' + item.id + '" class="remove"></input></td><td>' + item.sco + '</td><td>' + item.descricao + '</td></tr>';
-            alert(row);
-            table.find('tbody').append(row);
-            table.show().parent().fadeIn(200);
+            var table = $('#table-servicos');
+
+            if(table.find('input').attr('id') != item.id){
+                var row = '<tr><td><input id="' + item.id + '" type="button" item="' + item.id + '" class="remove"></input></td><td>' + item.sco + '</td><td>' + item.descricao + '</td></tr>';
+                table.children('tbody').first().after(row);
+                table.parent().fadeIn(200);
+                table.scrollTop(0);
+            }
+            else{
+                var log = $('#log');
+                $("<div/>").text('Serviço já incluído!').prependTo('#log');                
+//                log.slideDown(200);
+                log.fadeIn(200).delay(2000).fadeOut(200);
+            }
         }
     //        $( "<div/>" ).text( message ).prependTo( "#log" );
     //        $( "#log" ).scrollTop( 0 );

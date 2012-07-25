@@ -1,42 +1,32 @@
 <h1>Novo Projeto</h1>
-<div>
-    <?php echo form_label('Descrição') ?>
-</div>
-<div>
-    <?php echo form_input('descricao', '', 'id="txtDescricao"') ?>
-</div>
-
-
-<div class="ui-widget">
+<div class="block">
     <div>
-        <label for="city">Serviço</label>
+        <?php echo form_label('Descrição') ?>
     </div>
     <div>
-        <input id="city" />
+        <?php echo form_input('descricao', '', 'id="txtDescricao"') ?>
     </div>
 </div>
-<!--
 
+<div class="block">
 
-<div id="lista-servicos" class="demo">
+    <div class="ui-widget">
+        <div>
+            <?php echo form_label('Serviço', 'lblServico', 'for="city"') ?>
+        </div>
+        <div>
+            <input id="city" />
+        </div>
+    </div>
+</div>
 
-<?php // echo $this->load->view('list') ?>
-
-</div> End demo 
-
-
-
-
-
-<div class="ui-widget" style="margin-top:2em; font-family:Arial">
-    Result:
-    <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-</div>-->
-
+<div id="log-servicos" class="log">
+</div>
 
 <div id="projeto-servicos">
     <?php $this->load->view('list'); ?>
 </div>
+
 <div>
-    <?php echo form_submit('salvar', 'Salvar', 'id="btnSalvar"') ?>
+    <?php echo form_submit('salvar', 'Salvar', 'id="btnSalvar" class="button"') ?>
 </div>

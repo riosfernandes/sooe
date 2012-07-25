@@ -77,13 +77,14 @@ class Orcamento extends MY_Non_Public_Controller {
         
         $s = new Servico_model();
         $s->like('descricao', '%' . $termo . '%');
-                
-        $data['success'] = true;
-        foreach ($s->get() as $r) {
+                        
+        foreach ($s->get(12) as $r) {
             $data['servico'][$r->id]['id'] = $r->id;
             $data['servico'][$r->id]['descricao'] = $r->descricao;
             $data['servico'][$r->id]['sco'] = $r->sco;            
         }
+        
+        $data['success'] = true;
         
         echo json_encode($data);
         

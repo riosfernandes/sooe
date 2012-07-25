@@ -8,12 +8,12 @@
             <td><a id="link-add" href="<?php echo site_url('orcamento/add') ?>">New</a></td>
         </tr>
         <tr>
-            <td></td>
-            <td>Descrição</td>
-            <td>SCO</td>            
+            <th></th>
+            <th>SCO</th>
+            <th>Descrição</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="table-servicos-rows">
         <?php if (isset($servicos)) : ?>
             <?php foreach ($servicos as $s) : ?>
                 <tr>
@@ -23,5 +23,5 @@
                 </tr>
             <?php endforeach; ?>
         <?php endif; ?>
-    <tbody>
+    </tbody>
 </table>
