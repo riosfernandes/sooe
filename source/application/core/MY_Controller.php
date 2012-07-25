@@ -68,6 +68,14 @@ class MY_Controller extends CI_Controller {
 
         return $css_files;
     }
+    
+    /*
+     * returna o dado do post com  o mesmo nome passado ou então '';
+     */
+    public function get_post($name){
+        $temp = $_POST[$name];
+        return isset($temp) ? $temp : '';
+    }
 
 }
 
