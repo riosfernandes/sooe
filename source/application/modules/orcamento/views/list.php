@@ -5,7 +5,7 @@
 <table id="table-servicos">
     <thead>
         <tr>
-            <td><a id="link-add" href="<?php echo site_url('orcamento/add') ?>">New</a></td>
+            <td><h2>Serviços</h2></td>
         </tr>
         <tr>
             <th></th>

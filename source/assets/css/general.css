@@ -37,6 +37,43 @@ body {
 }
 /*/////////////////////////////////////////////////////////////////////////////
 
+    BUTTON'S
+
+/////////////////////////////////////////////////////////////////////////////*/
+.button{
+    font-weight: bold;
+    text-shadow: 0px -1px 1px #fff;
+    color: #555;
+    -moz-border-radius: 4px; /* FF1+ */;
+    -webkit-border-radius: 4px; /* Saf3-4 */;
+    border-radius: 4px; /* Opera 10.5, IE 9, Saf5, Chrome */;
+    padding: 4px 10px;
+    -moz-box-shadow: 0px 2px 3px #fff inset; /* FF3.5+ */;
+    -webkit-box-shadow: 0px 2px 3px #fff inset; /* Saf3.0+, Chrome */;
+    box-shadow: 0px 2px 3px #fff inset; /* Opera 10.5, IE 9.0 */
+    cursor: pointer;
+    border: 1px #ccc solid;
+    font-size: .9em;
+    background-color: #fff; /* FF3.6 */;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#cccccc')";
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ffffff),color-stop(1, #cccccc));
+    min-width: 70px;
+    min-height: 35px;
+}
+.button:hover {
+    color: #555;
+    background-color: #eee; /* FF3.6 */;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#aaaaaa')";
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ffffff),color-stop(1, #aaaaaa));/* Saf4+, Chrome */
+}
+.button:active {
+    -moz-box-shadow: 0px -1px 1px #8a8a8a; /* FF3.5+ */;
+    -webkit-box-shadow: 0px -1px 1px #8a8a8a; /* Saf3.0+, Chrome */;
+    box-shadow: 0px -1px 1px #8a8a8a; /* Opera 10.5, IE 9.0 */;
+    border-color: #fff;
+}
+/*/////////////////////////////////////////////////////////////////////////////
+
     INPUTS
 
 /////////////////////////////////////////////////////////////////////////////*/
@@ -46,13 +83,13 @@ input.field{
 input.button{
     border-radius: 4px;
     /* Para Mozilla/Gecko (Firefox etc) */
-/*    background: -moz-linear-gradient(top, #0672ba, #fff) repeat-X;*/
+    /*    background: -moz-linear-gradient(top, #0672ba, #fff) repeat-X;*/
     /* Para WebKit (Safari, Google Chrome etc) */
-/*    background: -webkit-gradient(linear, left top, left bottom, from(#0672ba), to(#fff)) repeat-X;*/
+    /*    background: -webkit-gradient(linear, left top, left bottom, from(#0672ba), to(#fff)) repeat-X;*/
     /* Para IE 8 */
-/*    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#0672ba, endColorstr=#FFFFFFFF)";*/
+    /*    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#0672ba, endColorstr=#FFFFFFFF)";*/
     /* Para IE 5.5 - 7 */
-/*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0672ba, endColorstr=#FFFFFFFF);*/
+    /*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#0672ba, endColorstr=#FFFFFFFF);*/
     background: linear-gradient(0deg, #0672ba, #fff);
 }
 input.add{
@@ -75,10 +112,28 @@ input.remove{
 
 /////////////////////////////////////////////////////////////////////////////*/
 .log{
-    border: 2px #B81010 solid;
+    width: 100%;
+    border: 1px solid #525a73;
+    padding: 5px;
+    background: #dee7e7;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    line-height: 30px;
+    display: none;
+}
+.log p{
+    padding: 20px;
     font-weight: bold;
     font-size: 15px;
-    padding: 20px;
-    background: linear-gradient(0deg, #eeeeee, #fff);
-    display: none;
+}
+/*/////////////////////////////////////////////////////////////////////////////
+
+    TITLES
+
+/////////////////////////////////////////////////////////////////////////////*/
+h2{
+    color: #0672ba;
+    font-size: 14px;
 }
