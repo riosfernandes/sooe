@@ -1,7 +1,4 @@
-$(function(){    
-    //    $('#log').hide();
-    //    $('#projeto-servicos').hide();    
-    
+$(function(){
     /* método para pesquisar e autocompletar
      * um serviço no campo e sua inclusão no
      * grid.
@@ -42,6 +39,45 @@ $(function(){
         }
     });
     
+    $('#btnSalvarProjeto').click(function(){
+        /* validação
+         **/
+        if($('#txtDescricaoProjeto').val().length == 0){
+            setLog('#log-projeto', 'Informe a descrição!');
+            return;
+        }
+        
+        /* obter os servicos
+         **/
+        var table = $('#table-servicos');
+        var itens = table.find('input');
+        var servicos = new Array();        
+        itens.each(function(index, value){
+            servicos[index] = value.id;
+        });
+        
+        if(servicos.length == 0){
+            setLog('#log-projeto', 'Informe ao menos um serviço!');
+            return;
+        }
+        
+        /* post com ajax
+         **/
+        $.post(
+            'orcamento/salvar', 
+            {
+                'descricao': $('#txtDescricaoProjeto').val(),
+                'ids': servicos
+            },
+            function(data){
+                //callback
+                if(data.success){
+                    setLog('#log-projeto', 'Projeto salvo com sucesso!');
+                }
+            },
+            'json'
+        )});
+    
     function addServico( item ) {
         if(item){
             var table = $('#table-servicos');
@@ -65,11 +101,18 @@ $(function(){
                 table.scrollTop(0);
             }
             else{
-                var log = $('#log-servicos');
-                log.html('<p>Serviço já incluído!</p>');
-                //                log.slideDown(200);
-                log.slideDown(200).delay(1000).slideUp(200);
+                setLog('#log-servicos', 'Serviço já incluído!');
+//                var log = $('#log-servicos');
+//                log.html('<p>Serviço já incluído!</p>');
+//                //                log.slideDown(200);
+//                log.slideDown(200).delay(1000).slideUp(200);
             }
         }
+    }
+    
+    function setLog(idDiv, msg){
+        var log = $(idDiv);
+        log.html('<p>' + msg + '</p>');
+        log.slideDown(200).delay(1000).slideUp(200);
     }
 });

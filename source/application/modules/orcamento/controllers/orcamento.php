@@ -90,30 +90,40 @@ class Orcamento extends MY_Non_Public_Controller {
     }
 
     public function salvar() {
+        try {
 //      recupera do post os dados;
-        $descricao = $this->get_post('descricao');
-        $ids = $this->get_post('ids');
-        
-        if($descricao || $ids)
-            return FALSE; //@todo: throw new Exception();
-       
+            $descricao = $this->get_post('descricao');
+            $ids = $this->get_post('ids');
+
+            if (!isset($descricao) || array_count_values($ids) == 0){
+                $data['success'] = false;
+                echo json_encode($data);
+                return FALSE; //@todo: throw new Exception();
+            }
+
+                
 //        @todo: recupera os serviços pelos ids passados
-        
-        $servicos = new Servico_model();
-        $servicos->where_in('id', $ids)->get();
-        
-        $p = new Projeto_model();
-        $p->descricao = $descricao;
-        $p->cadastro = date("Y-m-d H:i:s");
-        
-        $p->save($servicos->all);
+
+            $servicos = new Servico_model();
+            $servicos->where_in('id', $ids)->get();
+
+            $p = new Projeto_model();
+            $p->descricao = $descricao;
+            $p->cadastro = date("Y-m-d H:i:s");
+
+            $p->save($servicos->all);
 
 //      @todo: ver com o MJ do que ele precisa no retorno
-        $data['success'] = true;
+            $data['success'] = true;
 
-        echo json_encode($data);
+            echo json_encode($data);
 
-        return TRUE;
+            return TRUE;
+        } catch (Exception $e) {
+            $data['success'] = false;
+            echo json_encode($data);
+            return FALSE;
+        }
     }
 
 }

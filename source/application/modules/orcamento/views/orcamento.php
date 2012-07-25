@@ -5,7 +5,7 @@
             <?php echo form_label('Descrição', 'lblDescricao', 'for="descricao"') ?>
         </div>
         <div>
-            <?php echo form_input('descricao', '', 'id="txtDescricao"') ?>
+            <?php echo form_input('descricao', '', 'id="txtDescricaoProjeto"') ?>
         </div>
         <div>
             <div>
@@ -20,12 +20,14 @@
     <div id="log-servicos" class="log">
     </div>
 
-
     <div id="projeto-servicos" class="block">
         <?php $this->load->view('list'); ?>
     </div>
 </div>
 
+<div id="log-projeto" class="log">
+</div>
+
 <div>
-    <?php echo form_submit('salvar', 'Salvar', 'id="btnSalvar" class="button"') ?>
+    <?php echo form_submit('salvar', 'Salvar', 'id="btnSalvarProjeto" class="button"') ?>
 </div>
