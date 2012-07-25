@@ -11,15 +11,13 @@ class Orcamento extends MY_Non_Public_Controller {
         parent::__construct();
     }
 
-    public function index() {        
+    public function index() {
         $this->data['message'] = $this->session->flashdata('message');
-//        $servico = new Servico_model();
-//        $this->data['servicos'] = $servico->get_by_active();
-        
+
         $this->template->set('js_files', array(
             $this->get_js_formatado('orcamento/list'),
             $this->get_js_formatado('orcamento/orcamento')));
-        $this->template->set('css_files', array($this->get_css_formatado('orcamento/orcamento')));        
+        $this->template->set('css_files', array($this->get_css_formatado('orcamento/orcamento')));
         $this->template->set('titulo', 'Orçamento de Obra');
         $this->template->load('template_teste', 'orcamento', $this->data);
     }
@@ -28,7 +26,7 @@ class Orcamento extends MY_Non_Public_Controller {
         $this->template->set('js_files', array($this->get_js_formatado('orcamento/list')));
         $this->template->set('titulo', 'Orçamento de Obra');
         $this->template->load('template_teste', 'servico');
-        
+
 //        $this->load->library('form_validation');
 //
 //        if ($this->_validation() == TRUE) {
@@ -72,24 +70,52 @@ class Orcamento extends MY_Non_Public_Controller {
 //        return $projeto->save();
     }
 
-    public function find_servico(){
-        $termo = isset($_POST['name'])? $_POST['name'] : '';
-        
+    public function find_servico() {
+        $termo = isset($_POST['name']) ? $_POST['name'] : '';
+
         $s = new Servico_model();
         $s->like('descricao', '%' . $termo . '%');
-                        
+
         foreach ($s->get(12) as $r) {
             $data['servico'][$r->id]['id'] = $r->id;
             $data['servico'][$r->id]['descricao'] = $r->descricao;
-            $data['servico'][$r->id]['sco'] = $r->sco;            
+            $data['servico'][$r->id]['sco'] = $r->sco;
         }
-        
+
         $data['success'] = true;
-        
+
         echo json_encode($data);
-        
+
         return TRUE;
     }
+
+    public function salvar() {
+//      recupera do post os dados;
+        $descricao = $this->get_post('descricao');
+        $ids = $this->get_post('ids');
+        
+        if($descricao || $ids)
+            return FALSE; //@todo: throw new Exception();
+       
+//        @todo: recupera os serviços pelos ids passados
+        
+        $servicos = new Servico_model();
+        $servicos->where_in('id', $ids)->get();
+        
+        $p = new Projeto_model();
+        $p->descricao = $descricao;
+        $p->cadastro = date("Y-m-d H:i:s");
+        
+        $p->save($servicos->all);
+
+//      @todo: ver com o MJ do que ele precisa no retorno
+        $data['success'] = true;
+
+        echo json_encode($data);
+
+        return TRUE;
+    }
+
 }
 
 /* End of file welcome.php */

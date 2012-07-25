@@ -14,6 +14,15 @@ class Projeto_model extends DataMapper {
      * relacionamentos um para muitos
      */
     var $has_one = array('projeto', 'fase');
+    var  $has_many = array(
+        'servico' => array(			
+            'class' => 'servico_model',			
+            'other_field' => 'projeto',		
+            'join_self_as' => 'projeto',		
+            'join_other_as' => 'servico',		
+            'join_table' => 'atividade')	
+    );
+    
     var $created_field = 'cadastro';
     var $local_time = TRUE;
 
