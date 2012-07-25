@@ -15,7 +15,7 @@ class MY_Controller extends CI_Controller {
 
         $this->CI = & get_instance();
         $this->session = & $this->CI->session;
-    }    
+    }
 
     /*
      * Retorna um js formatado.
@@ -48,7 +48,7 @@ class MY_Controller extends CI_Controller {
     }
     
     public function get_js() {
-        $js_temp = array('jquery-1.7.1.min', 'general', 'navigator', 'side_bar', 'footer');
+        $js_temp = array('jquery-1.7.2.min', 'jquery-ui-1.8.21.custom.min', 'general', 'navigator', 'footer');
         $js_files_jquery = array();
 
         foreach ($js_temp as $js) {            
@@ -59,7 +59,7 @@ class MY_Controller extends CI_Controller {
     }
     
     public function get_css() {
-        $css_temp = array('hyper_header', 'header', 'general', 'navigator', 'side_bar', 'content', 'footer');
+        $css_temp = array('ui-lightness/jquery-ui-1.8.21.custom', 'hyper_header', 'header', 'general', 'navigator', 'content', 'footer');
         $css_files = array();
 
         foreach ($css_temp as $css) {

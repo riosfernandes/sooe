@@ -26,7 +26,7 @@ class Login extends MY_Controller_Admin {
     private function loadLogin() {
         $data['titulo'] = 'Login';
         $data['css_files'] = array('login');
-        $data['js_files'] = array('jquery-1.7.1.min', 'jquery.tools.min', 'login');
+        $data['js_files'] = array('jquery-1.7.2.min', 'jquery.tools.min', 'login');
 
         $this->load->view('login', $data);
     }
@@ -105,7 +105,8 @@ class Login extends MY_Controller_Admin {
 
         $var = array(
             'success' => true,
-            'usuario' => array('login' => $usuario['login'], 'nome' => $usuario['nome'])
+            'usuario' => array('login' => $usuario['login'], 'nome' => $usuario['nome']),
+            'url' => site_url('welcome')
         );
         echo json_encode($var);
         return TRUE;

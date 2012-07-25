@@ -21,7 +21,6 @@
         <div id="page">
             <div id="hyper_header"><?php $this->load->view('hyper_header') ?></div>
             <div id="header"><?php $this->load->view('header') ?></div>
-            <div id="side_bar"><?php $this->load->view('side_bar') ?></div>
             <div id="contents">
                 <?php
                 if (isset($subtitle))
