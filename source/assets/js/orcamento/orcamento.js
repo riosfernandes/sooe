@@ -3,7 +3,7 @@ $(function(){
      * um serviço no campo e sua inclusão no
      * grid.
      **/
-    $( "#city" ).autocomplete({
+    $( "#servico" ).autocomplete({
         source: function( request, response ) {
             $.ajax({
                 url: "orcamento/find_servico",
@@ -76,7 +76,18 @@ $(function(){
                 }
             },
             'json'
-        )});
+            )
+    });
+
+    /* remover o registro de serviço da listagem de servicos
+     **/
+    $('#table-servicos').find('input').live('click', function(){
+        $(this).parent().parent().remove();
+        
+        if($('#table-servicos').find('input').length == 0){
+            $('#projeto-servicos').hide();
+        }
+    });
     
     function addServico( item ) {
         if(item){
@@ -102,10 +113,10 @@ $(function(){
             }
             else{
                 setLog('#log-servicos', 'Serviço já incluído!');
-//                var log = $('#log-servicos');
-//                log.html('<p>Serviço já incluído!</p>');
-//                //                log.slideDown(200);
-//                log.slideDown(200).delay(1000).slideUp(200);
+            //                var log = $('#log-servicos');
+            //                log.html('<p>Serviço já incluído!</p>');
+            //                //                log.slideDown(200);
+            //                log.slideDown(200).delay(1000).slideUp(200);
             }
         }
     }

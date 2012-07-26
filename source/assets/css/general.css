@@ -134,6 +134,7 @@ input.remove{
 
 /////////////////////////////////////////////////////////////////////////////*/
 h2{
-    color: #0672ba;
     font-size: 14px;
+    font-weight: bold;
+/*    text-shadow: 2px 0 black, 0 2px black, 2px 0 black, 0 2px black;*/
 }

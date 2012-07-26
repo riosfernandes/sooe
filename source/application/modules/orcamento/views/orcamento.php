@@ -9,10 +9,10 @@
         </div>
         <div>
             <div>
-                <?php echo form_label('Serviço', 'lblServico', 'for="city"') ?>
+                <?php echo form_label('Serviço', 'lblServico', 'for="servico"') ?>
             </div>
             <div class="ui-widget">
-                <input id="city" />
+                <input id="servico" />
             </div>
         </div>
     </div>

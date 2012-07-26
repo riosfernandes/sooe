@@ -100,7 +100,6 @@ class Orcamento extends MY_Non_Public_Controller {
                 echo json_encode($data);
                 return FALSE; //@todo: throw new Exception();
             }
-
                 
 //        @todo: recupera os serviços pelos ids passados
 
