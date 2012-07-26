@@ -13,15 +13,15 @@ class Servico_model extends DataMapper {
     /*
      * relacionamentos um para muitos
      */
-    var $has_one = array('categoria_servico', 'cla', 'familia');
     var $has_many = array(
         'projeto' => array(
-            'class' => 'projeto_model',
+            'class' => 'Projeto_model',
             'other_field' => 'servico',
             'join_self_as' => 'servico',
             'join_other_as' => 'projeto',
             'join_table' => 'atividade')
     );
+    var $has_one = array('categoria_servico', 'cla', 'familia');    
     var $created_field = 'cadastro';
     var $local_time = TRUE;
 
