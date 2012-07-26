@@ -103,14 +103,14 @@ class Orcamento extends MY_Non_Public_Controller {
                 
 //        @todo: recupera os serviços pelos ids passados
 
-            $servicos = new Servico_model();
-            $servicos->where_in('id', $ids)->get();
+            $servico = new Servico_model();
+            $servico->where_in('id', $ids)->get();
 
-            $p = new Projeto_model();
-            $p->descricao = $descricao;
-            $p->cadastro = date("Y-m-d H:i:s");
+            $projeto = new Projeto_model();
+            $projeto->descricao = $descricao;
+            $projeto->cadastro = date("Y-m-d H:i:s");
 
-            $p->save($servicos->all);
+            $projeto->save($servico->all, 'servico');
 
 //      @todo: ver com o MJ do que ele precisa no retorno
             $data['success'] = true;
