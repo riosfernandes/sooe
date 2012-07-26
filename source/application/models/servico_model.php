@@ -58,5 +58,5 @@ class Servico_model extends DataMapper {
 
 }
 
-/* End of file usuario_model.php */
-/* Location: ./application/usuario/models/usuario_model.php */
+/* End of file servico_model.php */
+/* Location: ./application/usuario/models/servico_model.php */

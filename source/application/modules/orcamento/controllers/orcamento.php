@@ -95,14 +95,11 @@ class Orcamento extends MY_Non_Public_Controller {
             $descricao = $this->get_post('descricao');
             $ids = $this->get_post('ids');
 
-            if (!isset($descricao) || array_count_values($ids) == 0){
+            if (!isset($descricao) || array_count_values($ids) == 0) {
                 $data['success'] = false;
                 echo json_encode($data);
                 return FALSE; //@todo: throw new Exception();
             }
-
-                
-//        @todo: recupera os serviços pelos ids passados
 
             $servico = new Servico_model();
             $servico->where_in('id', $ids)->get();
@@ -113,8 +110,8 @@ class Orcamento extends MY_Non_Public_Controller {
 
             $projeto->save($servico->all, 'servico');
 
-//      @todo: ver com o MJ do que ele precisa no retorno
             $data['success'] = true;
+            $data['id'] = $projeto->id;
 
             echo json_encode($data);
 
@@ -128,5 +125,5 @@ class Orcamento extends MY_Non_Public_Controller {
 
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file orcamento.php */
+/* Location: ./application/modules/orcamento/controllers/orcamento.php */
