@@ -1,0 +1,53 @@
+\documentclass[dvips,ruledheader]{abnt}
+\usepackage[brazil]{babel} 				% linguagem portugues-Br
+\usepackage[T1]{fontenc}
+% \usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc} 				% para aceitar ascentos
+\usepackage[pdftex]{graphicx}
+% \usepackage[pdftex]{hyperref}
+% \usepackage{hyperref}					% incluir links para web
+\usepackage{abnt-alf}
+\usepackage{latexsym}
+\usepackage{psfrag}
+\usepackage{epigraph}
+
+% Glossário não utilizado
+% \usepackage{makeglo}
+% \renewcommand{\glossaryname}{Glossário}
+% \makeglossary
+
+\begin{document}
+\DeclareGraphicsRule{.eps.gz}{eps}{.eps.bb}{`gunzip -c #1}
+
+\part{Regras de negócio}
+\include{regras/projeto}
+\include{regras/orcamento}
+\include{regras/servico}
+\include{regras/taxas}
+\include{regras/insumos}
+\include{regras/regiao}
+
+
+\part{Operacional}
+
+\part{Requisito}
+\chapter{Módulo I - Orçamento de Obra}
+
+% \include{encardenacao}
+% \include{capa}
+% \include{folharosto}
+
+% \tableofcontents
+
+% \include{introducao}
+% \include{objetivo}
+% \include{requisito}
+% \include{configuracao}
+% \include{comportamento}
+% \include{utilizacao}
+% \include{recuperacao}
+% \include{problemas}
+
+% \bibliography{bb}
+% \bibliographystyle{abnt-alf}
+\end{document}
