@@ -17,5 +17,5 @@ class Principal extends MY_Non_Public_Controller {
     }
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file principal.php */
+/* Location: ./application/modules/orcamento/controllers/principal.php */

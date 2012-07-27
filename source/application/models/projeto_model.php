@@ -59,5 +59,5 @@ class Projeto_model extends DataMapper {
 
 }
 
-/* End of file usuario_model.php */
-/* Location: ./application/usuario/models/usuario_model.php */
+/* End of file projeto_model.php */
+/* Location: ./application/usuario/models/projeto_model.php */
