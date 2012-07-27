@@ -10,6 +10,14 @@ Serviço é uma atividade na qual a construtora está apta a realizar. Ex.:
 
 Inclusive alguns serviços como o uso de engenheiros da contrutora como se fosse uma consultoria.
 
+\section{Unidade de medição}
+
+Todo seviço possui uma unidade de medição (quilometro, horas, metros etc), justamente para determinar o preço do serviço. Ex., a ``Alvenaria de tijolo macico'', mostrada acima é cobrada por metro quadrado (m2), ou seja, para cada m2 é utilizado todos os recursos alocados (Composição) nas suas devidas proporções já pré-determinadas e tem um custo já estipulado.
+
+\section{Custo}
+
+Cada unidade do serviço possui um custo. Esse custo é estipulado com base nos recursos utilizados, assim se para fazer uma um m2 de parede (serviço) é preciso utilizar um saco de cimento e dois de area para fazer uma parede de X metros serão necessários X sacos de cimento e 2X de areia.
+
 \section{Recursos}
 
 Recurso é tudo que pode ser usado para desenvolver determinado serviço, podemos ter serviços desses tipos:
@@ -26,27 +34,15 @@ Cada recurso possui uma unidade \cite{quilometro, horas, metros etc} para calcul
 
 \subsection{Custo}
 
-Cada unidade do recurso possui um custo vinculado, ou seja, se o recurso do tipo equipamento chamado britadeira que possui a unidade em horas é utilizado por 2 horas o mesmo terá o custo de 2 
+O recurso possui um valor a ser pago pela sua utilização em cada unidade, chamado de custo.
 
+A quantidade da unidade estipula o custo, ou seja, se o recurso britadeira é utilizado por 2 horas o mesmo terá o custo de 2 x preço por unidade.
 
+\section{Composição}
 
+A composição é o vinculo entre serviço, recurso e outros serviços alocados para o mesmo.
 
-
-
-
-
-
-
-
-
-
-\subsection{Composição}
-
-Vinculo Entre Serviço e Recurso...
-
-Para realizar determinado serviço serão necessários usar recursos estipulados. Ex., para fazer o recurso ``Cobertura em telhas onduladas, sem amianto, com espessura de 4mm, fixadas por pregos, inclusive vedacao, exclusive o madeiramento, Vogatex ou similar. Fornecimento e colocacao.'' será necessário usar os seguintes recursos:
-
-
+Para realizar determinado serviço serão necessários usar recursos estipulados e outros serviços. Essa listagem do "que" tem que ser feito para fazer um serviço se da o nome de composição. Ex., para fazer o recurso ``Cobertura em telhas onduladas, sem amianto, com espessura de 4mm, fixadas por pregos, inclusive vedacao, exclusive o madeiramento, Vogatex ou similar. Fornecimento e colocacao.'' será necessário usar os seguintes recursos:
 
 \begin{itemize}
 	\item 3% incidente sobre mao de obra direta com Encargos Sociais para cobrir despesas de EPI e ferramentas;
@@ -57,22 +53,4 @@ Para realizar determinado serviço serão necessários usar recursos estipulados. E
 	\item Servente Tributos sobre o faturamento (7.56%);
 \end{itemize}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Unidade de medição}
-
-Todo seviço possui uma unidade de medição (quilometro, horas, metros etc), justamente para determinar o preço do serviço. Ex., a ``Alvenaria de tijolo macico'', mostrada acima é cobrada por metro quadrado (m2), ou seja, para cada m2 é utilizado todos os recursos alocados (nas suas devidas proporções já pré-determinadas) e tem um custo já estipulado.
-
-\section{Outros serviços}
+E o serviço de por exemplo, fixar colunas.
