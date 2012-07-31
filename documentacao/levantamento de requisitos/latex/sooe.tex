@@ -1,43 +1,51 @@
 \documentclass[dvips,ruledheader]{abnt}
-\usepackage[brazil]{babel} 				% linguagem portugues-Br
+\usepackage[brazil]{babel} 					% linguagem portugues-Br
 \usepackage[T1]{fontenc}
 % \usepackage[latin1]{inputenc}
 \usepackage[utf8]{inputenc} 				% para aceitar ascentos
 \usepackage[pdftex]{graphicx}
 % \usepackage[pdftex]{hyperref}
-% \usepackage{hyperref}					% incluir links para web
+% \usepackage{hyperref}						% incluir links para web
 \usepackage{abnt-alf}
 \usepackage{latexsym}
 \usepackage{psfrag}
 \usepackage{epigraph}
 
-% Gloss�rio n�o utilizado
+% Glossário não utilizado
 % \usepackage{makeglo}
-% \renewcommand{\glossaryname}{Gloss�rio}
+% \renewcommand{\glossaryname}{Glossário}
 % \makeglossary
+
+\author{Álvaro Vilobaldo \emph{Rios}\\
+Marcio \emph{Fernandes} Justino}
 
 \begin{document}
 \DeclareGraphicsRule{.eps.gz}{eps}{.eps.bb}{`gunzip -c #1}
 
-\part{Regras de neg�cio}
+%\include{encardenacao}
+\include{capa}
+\include{folharosto}
+
+\tableofcontents
+
+\part{Regras de Negócio}
 \include{regras/obra}
 \include{regras/projeto}
 \include{regras/orcamento}
+\include{regras/agrupamento}
 \include{regras/servico}
+\include{regras/composicao}
+\include{regras/recurso}
+\include{regras/custos}
 \include{regras/taxas}
-\include{regras/insumos}
 \include{regras/regiao}
 
 \part{Operacional}
 
 \part{Requisito}
-\chapter{M�dulo I - Or�amento de Obra}
+\chapter{Módulo I - Orçamento de Obra}
 
-% \include{encardenacao}
-% \include{capa}
-% \include{folharosto}
 
-% \tableofcontents
 
 % \include{introducao}
 % \include{objetivo}
@@ -47,6 +55,9 @@
 % \include{utilizacao}
 % \include{recuperacao}
 % \include{problemas}
+
+\part{Features}
+\include{features}
 
 % \bibliography{bb}
 % \bibliographystyle{abnt-alf}
