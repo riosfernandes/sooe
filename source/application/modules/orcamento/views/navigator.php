@@ -11,8 +11,9 @@
     </li>
     <li><a href="#">Projeto</a> 
         <ul> 
-            <li><a href="#">Estimativa</a></li> 
-            <li><a href="<?php echo site_url('orcamento') ?>">Orçamento</a></li>
+            <li><a href="#">Estimativa</a></li>
+            <li><a href="<?php echo site_url('projetos_ativos') ?>">Projetos Ativos</a></li>
+            <li><a href="<?php echo site_url('orcamento') ?>">Novo Projeto</a></li>
         </ul> 
     </li>
 </ul>
