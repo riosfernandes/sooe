@@ -1,2 +1,7 @@
 /documentacao\Modelagem\MER/*.bak
 /documentacao\Modelagem\MER/*.bak
+*.tex~
+*.aux
+*.log
+*.toc
+*.backup
