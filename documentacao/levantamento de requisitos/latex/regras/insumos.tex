@@ -1,0 +1,50 @@
+\chapter{Insumos}
+
+Insumo é tudo que representa unidade e que compõe as atividades (serviços) de um projeto.
+
+\section{Tipo de Insumo}
+
+O insumo é subdividido em: 
+
+\begin{itemize}
+	\item Materiais;
+	\item Mão de Obra; e
+	\item Equipamento.
+\end{itemize}
+
+\section{Unidade de Insumo}
+
+Os insumos são medidos por unidades:
+
+\begin{itemize}
+	\item Kilograma (kg);
+	\item Litro (l);
+	\item Hora/Homem (h);
+	\item Metro cúbico (M3);
+	\item Metro quadrado (M2); e
+	\item Outros.
+\end{itemize}
+
+O custo do insumo é dado por unidade, como demonstra a tabela \ref{tab:composicao}. Os valores são representados para uma única unidade de cada insumo, sendo que uma atividade poderá consumir \emph{n} quantidades de insumos.
+
+Um insumo pode apresentar diversos tributos que incidem sobre o mesmo, como por exemplo um insumo de mão de obra poderá apresentar tributos de INSS, ICMS, ISS, etc. Todos os tributos são medidos por unidade de percentual (\%). Esses insumos também podem estar presentes nos serviços. Veremos isso no capítulo dos serviços. A tabela \ref{tab:insumos_exemplo1} demonstra a incidência de tributos sobre um recurso.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|l|c|r|}
+	\hline
+	Código&			Descrição&						Unidade&		Valor 	\\ \hline
+	1.0.0.0&		Ajudante geral&					h&				10,00	\\ \hline
+	\end{tabular}
+	\begin{tabular}{|l|l|c|r|}
+	\hline
+	Código&			Descrição&						Unidade&		Valor 	\\ \hline
+	TRI0001&		INSS&							\%&				15,00	\\ \hline
+	TRI0002&		ICMS&							\%&				3,00	\\ \hline
+	TRI0003&		ISS&							\%&				1,50	\\ \hline
+	\end{tabular}
+	\caption{Incidência de tributos sobre um recurso}
+	\label{tab:insumos_exemplo1}
+\end{table}
+
+Um exemplo para a atividade \emph{Alv. Bl. Concreto 9x19x39} para construção de uma parede de 8m x 3m (24 m2). Assim, de acordo com a tabela de composição do serviço \ref{tab:composicao}, o serviço \emph{Alv. Bl. Concreto 9x19x39 vedação} tem um custo de 39,91 por m2. Para a execução da parede utilizando a atividade acima, seriam necessárias 24 unidades, totalizando seu custo em 957,84.
