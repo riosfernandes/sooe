@@ -19,6 +19,39 @@ Quando um orçamento tiver sua situação alterada para ``venda'', o projeto dev
 
 Quando um orçamento de execução for definido, a fase do projeto deverá ser alterada para ``fase de execução''.
 
-Os serviços dentro do orçamento devem ser filtrados por de ``custo direto'', ``custo indireto'' e ``custo administrativo''. Essa atribuição pode ser definida pelo responsável, podendo futuramente definir outros tipos de custos dentro de seu orçamento. Sendo assim, a apresentação dos serviços em um orçamento deve ser agrupada com base no tipo de custo definido.
-
 Um projeto de ``venda'' normalmente pode sofrer alterações e/ou aditivos (recursos ou serviços não previstos no orçamento de venda). Essas alterações devem ser registradas no orçamento de ``execução''. Já alterações quando de vontade do cliente devem ser feitas no orçamento de ``venda'' e \emph{\textbf{refletidas}} no orçamento de ``execução''.
+
+\section{Atividade}
+
+As atividades são definidas pela associação dos serviços a serem executados em um projeto através do orçamento. Os serviços são agrupados ao orçamento através de uma classificação de ``tipo de custo'', sendo filtrados por ``custo direto'', ``custo indireto'' e ``custo administrativo''. Essa atribuição pode ser definida pelo responsável, podendo futuramente definir outros tipos de custos dentro para um orçamento. Sendo assim, a apresentação dos serviços em um orçamento deve ser agrupada com base no tipo de custo definido. 
+
+Uma atividade deve possuir:
+
+\begin{itemize}
+	\item Orçamento;
+	\item Serviço; e
+	\item Tipo de custo para o serviço no orçamento.
+\end{itemize}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Associar/ Desassociar serviços de um orçamento; e
+	\item Alterar o tipo de custo de um ou mais serviços da composição.
+\end{itemize}
+
+\section{Tipo de Custo}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Criar/Alterar/Remover tipo de custo; e
+	\item Agrupar serviços em um orçamento através do tipo de custo.
+\end{itemize}
+
+O tipo de custo deve possuir:
+
+\begin{itemize}
+	\item Um código; e
+	\item Uma descrição.
+\end{itemize}

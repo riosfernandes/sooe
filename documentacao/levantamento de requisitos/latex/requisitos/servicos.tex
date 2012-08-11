@@ -1,52 +1,185 @@
 \chapter{Serviço}
 
-Um serviço pode ser reutilizado em outros projetos e/ou orçamentos.
-O serviço pode ser agrupado em vários serviços.
+O sistema deverá permitir:
 
-Um serviço poderá conter:
+\begin{itemize}
+	\item Incluir/Retirar serviços em um orçamento (chamada de atividade);
+	\item Um serviço ser reutilizado em outros orçamentos;
+	\item Agrupar serviços para facilitar sua localização;
+	\item Alterar a composição de um serviço (insumos e/ou tributos incidentes);
+	\item Alterar o \% de bonificação do serviço (\% de lucro);
+	\item Cassificar o serviço em níveis de:
+	\begin{itemize}
+		\item Família;
+		\item Clã; e
+		\item Categoria.
+	\end{itemize}
+\end{itemize}
+
+Um serviço deverá possuir:
 
 \begin{itemize}
 	\item Outros serviços\footnote{não obrigatório};
-	\item Uma categoria;
-	\item Um clã;
-	\item Uma família;
-	\item Um Grupo (que irá agrupar serviços);
-	\item Código (SCO);
+	\item Pertencer a uma família (respectivamente um clã e uma categoria);
+	\item Estar em um grupo (agrupamento de serviços);
+	\item Um código (SCO);
 	\item FGV;
-	\item Descrição; e
-	\item Um \% de bonificação (lucro/ serviço).
+	\item Uma descrição;
+	\item Um \% de bonificação (\% de lucro); e
+	\item Tributos incidentes (\%)\footnote{não obrigatório}.
 \end{itemize}
 
-Um serviço é composto de recursos e/ou outros serviços. Essa junção de recursos e/ou serviços ao serviço dá-se o nome de composição.
+\section{Grupo}
 
-O grupo é utilizado para agrupar serviços, deve possuir:
+O sistema deverá permitir:
 
 \begin{itemize}
-	\item Outro grupo\footnote{não obrigatório}; e
-	\item Descrição;
+	\item Cadastrar/Alterar/Remover um grupo;
+	\item Associar/Desassociar um grupo em outro grupo\footnote{não obrigatório}; e
+	\item Associar/Desassociar serviços em um grupo.
 \end{itemize}
 
-A categoria, o clã e a família são para categorizar os serviços.
-
-Uma categoria pode possuir vários clãns, um clã pode possuir várias famílias.
-
-Uma categoria pode deve possuir:
+O grupo deverá possuir:
 
 \begin{itemize}
-	\item Descrição; e
-	\item Sigla da categoria;
+	\item Uma descrição.
 \end{itemize}
 
-Um clã deve possuir:
+\section{Categoria}
+
+O sistema deverá permitir:
 
 \begin{itemize}
-	\item Descrição; e
-	\item Sigla do clã;
+	\item Incluir/Alterar/Remover uma categoria; e
+	\item Associar/Desassociar clãns a uma categoria.
 \end{itemize}
 
-Uma família deve possuir:
+Uma categoria deverá possuir:
 
 \begin{itemize}
-	\item Descrição; e
-	\item Sigla da família;
+	\item Um código (sigla);
+	\item Uma descrição.
+\end{itemize}
+
+\section{Clã}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover um clã;
+	\item Associar/Desassociar o clã de uma categoria; e
+	\item Associar/Desassociar famílias de um clã.
+\end{itemize}
+
+Um clã deverá possuir:
+
+\begin{itemize}
+	\item Um código (sigla);
+	\item Uma descrição; e
+	\item Uma categoria.
+\end{itemize}
+
+\section{Família}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover uma família;
+	\item Associar/Desassociar a família de um clã; e
+	\item Associar/Desassociar serviços de uma família.
+\end{itemize}
+
+Uma família deverá possuir:
+
+\begin{itemize}
+	\item Um código (sigla);
+	\item Uma descrição; e
+	\item Um clã.
+\end{itemize}
+
+\section{Tributos}
+
+Um serviço poderá apresentar diversos tributos. Os tributos são diferenciados por região, ou seja, a tributação incidente no serviço poderá variar dependendo da região em que é aplicado o projeto. O valor do tributo é dado em percentual (\%). O \% poderá ser um tipo de unidade, podendo futuramente ser utilizados outros tipos de unidades para medir os tributos.
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Alterar/Incluir/Remover tributos em uma região;
+	\item Alterar a região de um tributo;
+	\item Alterar o valor de tributação incidente do tributo;
+	\item Associar/Desassociar tributos em um serviço; e
+	\item Associar/Desassociar tributos em um insumo.
+\end{itemize}
+
+\section{Composição}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Remover insumos em um serviço;
+	\item Alterar a quantidade de um insumo para um serviço.
+\end{itemize}
+
+A composição deverá possuir:
+
+\begin{itemize}
+	\item Um serviço; e
+	\item Insumos;
+\end{itemize}
+
+\section{Insumo}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover um insumo;
+	\item Associar/Desassociar insumos em um serviço;
+	\item Associar/Desassociar um insumo de um fornecedor (irá determinar o valor do insumo);
+	\item Alterar a origem do insumo (próprio/terceiro);
+	\item Alterar o tipo de recurso (material/mão de obra/equipamento);
+	\item Alterar o tipo de unidade do insumo; e
+	\item Associar/Desassociar tributos de um insumo.
+\end{itemize}
+
+O insumo deverá possuir:
+
+\begin{itemize}
+	\item Tipo de insumo (material/mão de obra/equipamento);
+	\item Tipo de unidade (l/m2/m3/kg/tl...etc);
+	\item Origem do insumo (próprio/terceiro);
+	\item Preço (diferenciado por fornecedor e região);
+	\item Tributos\footnote{não obrigatório};
+	\item Código; e
+	\item Descrição.
+\end{itemize}
+
+\section{Tipo de Unidade}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover um tipo de unidade;
+	\item Associar/Desassociar um tipo de unidade a um tributo; e
+	\item Associar/Desassociar um tipo de unidade a um insumo.
+\end{itemize}
+
+O tipo de unidade deverá possuir:
+
+\begin{itemize}
+	\item Uma descrição.
+\end{itemize}
+
+\section{Tipo de Insumo}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover um tipo de insumo; e
+	\item Associar/Desassociar um tipo de insumo de um insumo.
+\end{itemize}
+
+O tipo de insumo deverá possuir:
+
+\begin{itemize}
+	\item Uma descrição.
 \end{itemize}
