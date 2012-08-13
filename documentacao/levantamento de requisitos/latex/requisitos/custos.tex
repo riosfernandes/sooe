@@ -1,0 +1,130 @@
+\chapter{Custos}
+
+Os custos envolvidos no orçamento variam conforme a região onde o projeto é executado. Sendo assim, o sistema deverá permitir que um orçamento seja vinculado à uma região. Além do projeto, os serviços presentes em um orçamento possuem recursos que são originados de fornecedores, sejam materiais, sejam equipamentos ou mão de obra, assim, os preços também variam por fornecedor, e claro, por região.
+
+Outro custo que pode variar com a região são os tributos.
+
+A região deverá ser estabelecida através da ligação entre cidades.
+
+\section{Região}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover uma região;
+	\item Associar/Desassociar cidades a uma região; e
+	\item Associar/Desassociar tributos a uma região.
+\end{itemize}
+
+A região deverá possuir:
+
+\begin{itemize}
+	\item Nome.
+\end{itemize}
+
+\section{Cliente}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover um cliente;
+	\item Associar/Desassociar endereços a um cliente; e
+	\item Associar/Desassociar um cliente/endereço a um projeto.
+\end{itemize}
+
+O cliente deverá possuir:
+
+\begin{itemize}
+	\item Nome; e
+	\item Endereços.
+\end{itemize}
+
+\section{Endereço}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover um endereço para um cliente; e
+	\item Incluir/Alterar/Remover um endereço para um fornecedor.
+\end{itemize}
+
+O endereço deverá possuir:
+
+\begin{itemize}
+	\item Tipo de logradouro (Rua, Avenida, etc.);
+	\item Cidade;
+	\item CEP;
+	\item Logradouro;
+	\item Complemento; e
+	\item Numero.
+\end{itemize}
+
+\section{Fornecedor}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover um fornecedor;
+	\item Incluir/Alterar/Remover endereços de um fornecedor; e
+	\item Incluir/Alterar/Remover preços de insumos de um fornecedor.
+\end{itemize}
+
+Um fornecedor deverá possuir:
+
+\begin{itemize}
+	\item Nome;
+	\item CNPJ;
+	\item Inscrição Estadual; e
+	\item Tipo de fornecedor.
+\end{itemize}
+
+\section{Cidade}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover uma cidade em um estado;
+	\item Associar/Desassociar uma cidade a uma região; e
+	\item Associar/Desassociar uma cidade de uma região.
+\end{itemize}
+
+Uma cidade deverá possuir:
+
+\begin{itemize}
+	\item Estado;
+	\item Região; e
+	\item Nome da cidade.
+	\item Incluir/Alterar/Remover um endereço para um fornecedor.
+\end{itemize}
+
+\section{Estado}
+
+O sistema deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover um estado em um país;
+	\item Associar/Desassociar cidades a um estado; e
+	\item Associar/Desassociar o estado a um país.
+\end{itemize}
+
+O estado deverá possuir:
+
+\begin{itemize}
+	\item País; e
+	\item Nome.
+\end{itemize}
+
+\section{País}
+
+O país deverá permitir:
+
+\begin{itemize}
+	\item Incluir/Alterar/Remover um país; e
+	\item Associar/Desassociar estados a um país.
+\end{itemize}
+
+O país deverá possuir:
+
+\begin{itemize}
+	\item Nome.
+\end{itemize}
