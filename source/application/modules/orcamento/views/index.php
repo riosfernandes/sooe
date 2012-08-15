@@ -1,1 +1,0 @@
-<div id="navigator"><?php $this->load->view('navigator') ?></div>

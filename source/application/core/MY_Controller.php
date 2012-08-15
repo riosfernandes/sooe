@@ -2,14 +2,14 @@
 
 /*
  * Controller principal que possui functions comuns para todos os outros;
- * OBS> Nâo utilizar nos controllers do applications.
+ * OBS> Nï¿½o utilizar nos controllers do applications.
  */
 
 class MY_Controller extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        //pode difinir aqui css e js que serão padrão para todas as telas.
+        //pode difinir aqui css e js que serï¿½o padrï¿½o para todas as telas.
         $this->template->set('css_files', $this->get_css());
         $this->template->set('js_files', $this->get_js());
 
@@ -59,7 +59,7 @@ class MY_Controller extends CI_Controller {
     }
     
     public function get_css() {
-        $css_temp = array('ui-lightness/jquery-ui-1.8.21.custom', 'hyper_header', 'header', 'general', 'navigator', 'content', 'footer');
+        $css_temp = array('ui-lightness/jquery-ui-1.8.21.custom', 'hyper_header', 'header', 'general', 'navigator', 'subtitle', 'content', 'footer');
         $css_files = array();
 
         foreach ($css_temp as $css) {
@@ -70,7 +70,7 @@ class MY_Controller extends CI_Controller {
     }
     
     /*
-     * returna o dado do post com  o mesmo nome passado ou então '';
+     * returna o dado do post com  o mesmo nome passado ou entï¿½o '';
      */
     public function get_post($name){
         $temp = $_POST[$name];

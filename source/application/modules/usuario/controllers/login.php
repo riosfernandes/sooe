@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 //@todo: salvar na base o id da session?
 if (!defined('BASEPATH'))
@@ -19,7 +19,7 @@ class Login extends MY_Controller_Admin {
         $this->form_validation->set_rules('password', 'password', 'trim|required|md5');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
-        //método utilizando o post via jquery
+        //mÃ©todo utilizando o post via jquery
         $this->loadLogin();
     }
 
@@ -31,11 +31,11 @@ class Login extends MY_Controller_Admin {
         $this->load->view('login', $data);
     }
 
-    /* método utilizando javascript para realizar
+    /* mÃ©todo utilizando javascript para realizar
      * o post.
      */
     function entrar() {
-        //obter o usuário e a senha e tentar efetuar o login
+        //obter o usuÃ¡rio e a senha e tentar efetuar o login
         $usuario = isset($_POST['username']) ? $_POST['username'] : '';
         $senha = isset($_POST['password']) ? $_POST['password'] : '';
 
@@ -43,7 +43,7 @@ class Login extends MY_Controller_Admin {
         if ($usuario == "" || $senha == "") {
             $var = array(
                 'success' => false,
-                'message' => htmlentities('Dados do usuário não informados')
+                'message' => htmlentities('Dados do usuÃ¡rio nÃ£o informados')
             );
             echo json_encode($var);
             return false;
@@ -53,16 +53,16 @@ class Login extends MY_Controller_Admin {
 
         $u = new Usuario_model();
         $u->where('login', $usuario);
-//      @todo: permitir ao usuário trocar o hash padrão
+//      @todo: permitir ao usuÃ¡rio trocar o hash padrÃ£o
         $u->where('senha', md5($senha));
-//      @todo: Recuperar da configuração do sistema
+//      @todo: Recuperar da configuraÃ§Ã£o do sistema
 //      $u->where('situacao_id', 2);
         $u->get(1);
 
         if ($u->result_count() == 0) {
             $var = array(
                 'success' => false,
-                'message' => htmlentities('Usuário não localizado')
+                'message' => htmlentities('UsuÃ¡rio nÃ£o localizado')
             );
             echo json_encode($var);
             return false;
@@ -86,8 +86,8 @@ class Login extends MY_Controller_Admin {
         // insere data e hora do ultimo login
         $u->update('ultimo_acesso', date("Y-m-d H:i:s"));
 
-        /* salva na session o usuário, o cooke só guarda 4KB, 
-         * talvez seja necessário salvar apenas o id do usuario
+        /* salva na session o usuÃ¡rio, o cooke sÃ³ guarda 4KB, 
+         * talvez seja necessÃ¡rio salvar apenas o id do usuario
          */
         $usuario = array(
             'id' => $u->id,
@@ -125,7 +125,7 @@ class Login extends MY_Controller_Admin {
     }
 
     function recuperar_senha() {
-//        @todo: fazer a recuperação de senha enviando e-mail para o usuário
+//        @todo: fazer a recuperaÃ§Ã£o de senha enviando e-mail para o usuÃ¡rio
 //        try {
 //            $login = isset($_POST['login']) ? $_POST['login'] : '';
 //            $email = isset($_POST['email']) ? $_POST['email'] : '';
@@ -138,7 +138,7 @@ class Login extends MY_Controller_Admin {
 //            if ($usuario->result_count() != 1) {
 //                $var = array(
 //                    'success' => false,
-//                    'message' => htmlentities('Usuário informado não localizado')
+//                    'message' => htmlentities('UsuÃ¡rio informado nÃ£o localizado')
 //                );
 //                echo json_encode($var);
 //                return false;
@@ -164,11 +164,11 @@ class Login extends MY_Controller_Admin {
     }
     
     private function enviar_email($email, $senha) {
-        throw new Exception('testando excessão');
+        throw new Exception('testando excessÃ£o');
         
-        /* @todo: implementar o envio de email para o usuário
-         * @todo: logar a solicitação de senha por email informando
-         * o usuário.
+        /* @todo: implementar o envio de email para o usuÃ¡rio
+         * @todo: logar a solicitaÃ§Ã£o de senha por email informando
+         * o usuÃ¡rio.
          */
         
         $mensagem = 'Senha para acesso solicitada: ' + senha;
@@ -180,7 +180,7 @@ class Login extends MY_Controller_Admin {
         $this->email->cc('outro@outro-site.com');
         $this->email->bcc('fulano@qualquer-site.com');
 
-        $this->email->subject('Recuperação de senha');
+        $this->email->subject('RecuperaÃ§Ã£o de senha');
         $this->email->message($mensagem);
 
         $this->email->send();

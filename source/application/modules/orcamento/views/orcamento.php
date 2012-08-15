@@ -1,15 +1,14 @@
-<h1>Novo Projeto</h1>
 <div id="form">
     <div class="block">
         <div>
-            <?php echo form_label('Descrição', 'lblDescricao', 'for="descricao"') ?>
+            <?php echo form_label('DescriÃ§Ã£o', 'lblDescricao', 'for="descricao"') ?>
         </div>
         <div>
             <?php echo form_input('descricao', '', 'id="txtDescricaoProjeto"') ?>
         </div>
         <div>
             <div>
-                <?php echo form_label('Serviço', 'lblServico', 'for="servico"') ?>
+                <?php echo form_label('ServiÃ§o', 'lblServico', 'for="servico"') ?>
             </div>
             <div class="ui-widget">
                 <input id="servico" />

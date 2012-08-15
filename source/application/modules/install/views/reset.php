@@ -1,4 +1,4 @@
-<?php if(isset($first_time)): ?>
+﻿<?php if(isset($first_time)): ?>
 
 <p>The database has not yet been created.  Please click on the link below if you want to have the database automatically created.</p>
 

@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -18,13 +18,13 @@ class Orcamento extends MY_Non_Public_Controller {
             $this->get_js_formatado('orcamento/list'),
             $this->get_js_formatado('orcamento/orcamento')));
         $this->template->set('css_files', array($this->get_css_formatado('orcamento/orcamento')));
-        $this->template->set('titulo', 'Orçamento de Obra');
+        $this->template->set('subtitle', 'OrÃ§amento de Obra');
         $this->template->load('template_teste', 'orcamento', $this->data);
     }
 
     public function add() {
         $this->template->set('js_files', array($this->get_js_formatado('orcamento/list')));
-        $this->template->set('titulo', 'Orçamento de Obra');
+        $this->template->set('subtitle', 'OrÃ§amento de Obra');
         $this->template->load('template_teste', 'servico');
 
 //        $this->load->library('form_validation');
@@ -101,7 +101,7 @@ class Orcamento extends MY_Non_Public_Controller {
                 return FALSE; //@todo: throw new Exception();
             }
                 
-//        @todo: recupera os serviços pelos ids passados
+//        @todo: recupera os serviÃ§os pelos ids passados
 
             $servico = new Servico_model();
             $servico->where_in('id', $ids)->get();

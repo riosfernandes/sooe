@@ -133,8 +133,15 @@ input.remove{
     TITLES
 
 /////////////////////////////////////////////////////////////////////////////*/
+h1{
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e82cc;
+    padding: 40px 0 10px 0;
+}
 h2{
     font-size: 14px;
     font-weight: bold;
-/*    text-shadow: 2px 0 black, 0 2px black, 2px 0 black, 0 2px black;*/
+    color: #1e82cc;
+    padding: 5px 0;
 }
