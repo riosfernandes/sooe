@@ -3,13 +3,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Categoria_servico_model extends DataMapper {
-    /*
-     * se n�o especificado o datamapper entende que a tabela tem o mesmo 
-     * nome do modelo com um 's' no final
-     */
+class Tipo_insumo_model extends DataMapper {
 
-    var $table = 'categoria_servico';
+    var $table = 'tipo_unidade';
 //    /*
 //     * relacionamentos um para muitos
 //     */
@@ -21,17 +17,17 @@ class Categoria_servico_model extends DataMapper {
 //            'join_other_as' => 'projeto',
 //            'join_table' => 'atividade')
 //    );
-//    var $has_one = array('grupo_servico');
+//    var $has_one = array('categoria_servico');
     var $created_field = 'cadastro';
     var $local_time = TRUE;
     var $validation = array(
         'descricao' => array(
             'label' => 'Descrição',
-            'rules' => array('required', 'trim', 'min_length' => 3, 'max_length' => 300)
+            'rules' => array('required', 'trim', 'min_length' => 3, 'max_length' => 45)
         ),
-        'codigo' => array(
-            'label' => 'Codigo',
-            'rules' => array('required', 'trim', 'min_length' => 2, 'max_length' => 8)
+        'sigla' => array(
+            'label' => 'Sigla',
+            'rules' => array('required', 'trim', 'min_length' => 1, 'max_length' => 10)
         )
     );
 
@@ -41,5 +37,5 @@ class Categoria_servico_model extends DataMapper {
 
 }
 
-/* End of file categoria_servico.php */
-/* Location: ./application/usuario/models/categoria_servico.php */
+/* End of file tipo_unidade.php */
+/* Location: ./application/usuario/models/tipo_unidade.php */

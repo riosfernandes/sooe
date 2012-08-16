@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Categoria_servico extends MY_Non_Public_Controller {
+class Familia_servico extends MY_Non_Public_Controller {
 
     public $data = array();
 
@@ -12,7 +12,7 @@ class Categoria_servico extends MY_Non_Public_Controller {
     }
 
     public function index() {
-        $this->template->set('subtitle', 'Categoria de Serviço');
+        $this->template->set('subtitle', 'Família de Serviço');
         $this->template->load('template_teste', 'crudpage', $this->get_crud());
     }
     
@@ -21,13 +21,16 @@ class Categoria_servico extends MY_Non_Public_Controller {
         
         $crud = new grocery_CRUD();
         $crud->set_theme('datatables');
-        $crud->set_table('categoria_servico');
-        $crud->set_subject('Categoria de Serviço');        
-        $crud->columns('id', 'codigo', 'descricao');
-        $crud->edit_fields('codigo', 'descricao');
-        $crud->add_fields('codigo', 'descricao');
+        $crud->set_table('familia_servico');
+        $crud->set_subject('Família de Serviço');        
+        $crud->columns('id', 'cla_servico_id', 'codigo', 'descricao');
+        $crud->set_relation('cla_servico_id', 'cla_servico', 'codigo');
+        $crud->display_as('cla_servico_id', 'Clã');
+        $crud->edit_fields('cla_servico_id', 'codigo', 'descricao');
+        $crud->add_fields('cla_servico_id', 'codigo', 'descricao');
         /* regras e campos obrigatórios */
-        $crud->required_fields('codigo', 'descricao');        
+        $crud->required_fields('cla_servico_id', 'codigo', 'descricao');
+        $crud->set_rules('cla_servico_id', 'Clã', 'required');
         $crud->set_rules('codigo', 'Código', 'required|min_length[2]');
         $crud->set_rules('descricao', 'Descrição', 'required|min_length[3]');
         return $crud->render();

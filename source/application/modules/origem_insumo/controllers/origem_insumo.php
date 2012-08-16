@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Categoria_servico extends MY_Non_Public_Controller {
+class Origem_insumo extends MY_Non_Public_Controller {
 
     public $data = array();
 
@@ -12,7 +12,7 @@ class Categoria_servico extends MY_Non_Public_Controller {
     }
 
     public function index() {
-        $this->template->set('subtitle', 'Categoria de Serviço');
+        $this->template->set('subtitle', 'Origem de Insumo');
         $this->template->load('template_teste', 'crudpage', $this->get_crud());
     }
     
@@ -21,18 +21,17 @@ class Categoria_servico extends MY_Non_Public_Controller {
         
         $crud = new grocery_CRUD();
         $crud->set_theme('datatables');
-        $crud->set_table('categoria_servico');
-        $crud->set_subject('Categoria de Serviço');        
-        $crud->columns('id', 'codigo', 'descricao');
-        $crud->edit_fields('codigo', 'descricao');
-        $crud->add_fields('codigo', 'descricao');
+        $crud->set_table('origem_insumo');
+        $crud->set_subject('Origem de Insumo');
+        $crud->columns('id', 'descricao');
+        $crud->edit_fields('descricao');
+        $crud->add_fields('descricao');
         /* regras e campos obrigatórios */
-        $crud->required_fields('codigo', 'descricao');        
-        $crud->set_rules('codigo', 'Código', 'required|min_length[2]');
+        $crud->required_fields('descricao');        
         $crud->set_rules('descricao', 'Descrição', 'required|min_length[3]');
         return $crud->render();
     }
 }
 
-/* End of file categoria_servico.php */
-/* Location: ./application/modules/categoria_servico/controllers/categoria_servico.php */
+/* End of file origem_insumo.php */
+/* Location: ./application/modules/origem_insumo/controllers/origem_insumo.php */
