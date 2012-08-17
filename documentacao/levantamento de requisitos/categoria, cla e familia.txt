@@ -1,0 +1,27 @@
+(11:06:37) Marcio Justino: a categoria de serviços ela tem uma sigla, o clã já tem um código, é isso mesmo?
+(11:07:30) Marcio Justino: a categoria tem um código tipo AD e o clã tem código tipo 05
+(11:07:35) Marcio Justino: pelo que vi aqui no sistema
+(11:08:52) Marcio Justino: quero saber se esses códigos aceitam número e letras ou só números ou só letras
+(11:08:57) Marcio Justino: consegue me dizer isso?
+(11:17:56) Alfredo Justino: entao vamos mudar isso
+(11:18:02) Alfredo Justino: pode ter letras 2 letras
+(11:18:12) Alfredo Justino: e o restante numeros
+(11:18:21) Alfredo Justino: pode colocar uns 6 numeros
+(11:19:37) Marcio Justino: blz, então o código pode ser a mistura de dígitos e números
+(11:19:56) Marcio Justino: e o limite seriam 8 caracteres?
+(11:21:07) Marcio Justino: isso pra categoria, cla e família?
+(11:21:43) Alfredo Justino: isso
+(11:21:45) Alfredo Justino: pode ser
+(11:21:51) Marcio Justino: ok
+(11:22:22) Alfredo Justino: voce acha melhor 8 ou 10 caracteries
+(11:24:22) Marcio Justino: isso aí é com vc
+(11:24:30) Marcio Justino: o problema é que vai ser fixo
+(11:24:40) Marcio Justino: e vai ser indexável pra localizar no banco
+(11:26:03) Marcio Justino: tipo, se for de 10 vc terá q informar um código de 10 caracteres
+(11:26:07) Marcio Justino: entendeu?
+(11:26:18) Alfredo Justino: tendi
+(11:26:19) Alfredo Justino: pode ser 8
+(11:26:28) Alfredo Justino: se no futuro quiser aumentar pode?
+(11:26:36) Marcio Justino: sim
+(11:26:40) Marcio Justino: não pode é diminuir
+(11:26:50) Marcio Justino: vou deixar 8 então

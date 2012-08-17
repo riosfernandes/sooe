@@ -1,0 +1,16 @@
+/* 
+    Document   : subtitle
+    Created on : 15/08/2012, 10:25:42
+    Author     : mjustino
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+#subtitle{
+    padding: 0 20px 0 20px;
+/*    width: 100%;*/
+/*    background: black;*/
+}
