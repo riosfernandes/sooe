@@ -12,23 +12,23 @@ $(function(){
         $(this).parent().fadeOut(200);
     });
     
-    /* realiza o submit da entrada do usuário
+    /* realiza o submit da entrada do usuï¿½rio
      * no sistema, validando os dados de entrada
-     * e tratamento de saída
+     * e tratamento de saï¿½da
      **/
-    $("#btnEntrar").click(function(){
+    $('#btnEntrar').click(function(){
         $('#validation-summary').hide();
         
-        //validar dados do usuário
+        //validar dados do usuario
         var username = $('#fieldUsername').val();
         var password = $('#fieldPassword').val();        
         if(username.length == 0 || password.length == 0){
-            showLoginErrors(['Dados de login não informados.']);
+            showLoginErrors(['Dados de login nï¿½o informados.']);
             return false;
         }
         
         $.post(
-            'login/entrar',
+            'usuario/entrar',
             {
                 username        :username,
                 password        :password
@@ -45,30 +45,30 @@ $(function(){
             );
     });
     
-    /* captura de evento para recuração de
+    /* captura de evento para recuraï¿½ï¿½o de
      * senha
      **/
     $('#btnRecuperar').click(function(){
         $('#validation-summary').hide();
         
-        //validação de dados
+        //validaï¿½ï¿½o de dados
         var login = $('#fieldUsername').val();
         var email = $('#fieldEmail').val();
         if(login.length == 0 && email.length == 0){
-            showLoginErrors(["Necessário informar o usuário", "Necessário informar o e-mail!"]);
+            showLoginErrors(["NecessÃ¡rio informar o usuÃ¡rio", "NecessÃ¡rio informar o e-mail!"]);
             return false;
         }
         else if(email.length == 0){
-            showLoginErrors(['Necessário informar o e-mail!']);
+            showLoginErrors(['NecessÃ¡rio informar o e-mail!']);
             return false;
         }
         else if(login.length == 0){
-            showLoginErrors(['Necessário informar o usuário!']);
+            showLoginErrors(['NecessÃ¡rio informar o usuÃ¡rio!']);
             return false;
         }
         
         $.post(
-            'login/recuperar_senha',
+            'usuario/recuperar_senha',
             {
                 login   :login,
                 email   :email

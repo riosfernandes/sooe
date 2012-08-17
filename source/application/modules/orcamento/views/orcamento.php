@@ -24,9 +24,6 @@
     </div>
 </div>
 
-<div id="log-projeto" class="log">
-</div>
-
 <div>
     <?php echo form_submit('salvar', 'Salvar', 'id="btnSalvarProjeto" class="button"') ?>
 </div>

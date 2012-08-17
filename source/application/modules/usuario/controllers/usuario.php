@@ -4,7 +4,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Login extends MY_Controller_Admin {
+class Usuario extends MY_Controller_Admin {
 
     var $error;
 
@@ -186,6 +186,37 @@ class Login extends MY_Controller_Admin {
         $this->email->send();
 
 //        echo $this->email->print_debugger();
+    }
+    
+    public function novo_usuario(){       
+        $this->load_page_novo_usuario();
+    }
+    
+    private function load_page_novo_usuario(){
+        $this->data['message'] = $this->session->flashdata('message');
+
+        $grupos_usuario = $this->get_grupos_usuario();
+        $tipos_usuario = $this->get_tipos_usuario();
+        
+        $this->template->set('js_files', array($this->get_js_formatado('usuario/novo_usuario')));
+        $this->template->set('css_files', array($this->get_css_formatado('usuario/novo_usuario')));
+        $this->template->set('subtitle', 'Novo Usuário');
+        $this->template->load('template_teste', 'novo_usuario', $this->data);
+    }
+    
+    private function get_grupos_usuario(){
+        $grupos = new Grupo_usuario_model();
+        $grupos_usuarios = array();
+        foreach($grupos->get() as $g){
+            $grupos_usuarios['id'] = $g->id;
+            $grupos_usuarios['descricao'] = $g->descricao;
+        }
+        return $grupos_usuarios;
+    }
+    
+    private function get_tipos_usuario(){
+        $tipos = new Tipo_usuario_model();
+        return $tipos->get();
     }
 }
 

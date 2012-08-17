@@ -12,6 +12,10 @@ class Orcamento extends MY_Non_Public_Controller {
     }
 
     public function index() {
+        $this->load_page();
+    }
+    
+    private function load_page(){
         $this->data['message'] = $this->session->flashdata('message');
 
         $this->template->set('js_files', array(

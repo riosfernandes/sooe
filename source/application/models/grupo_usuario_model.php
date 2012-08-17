@@ -6,18 +6,17 @@ if (!defined('BASEPATH'))
 class Grupo_usuario_model extends DataMapper {
 
     var $table = 'grupo_usuario';
-//    /*
-//     * relacionamentos um para muitos
-//     */
-//    var $has_many = array(
-//        'servico' => array(
-//            'class' => 'Servico_model',
-//            'other_field' => 'servico',
-//            'join_self_as' => 'servico',
-//            'join_other_as' => 'projeto',
-//            'join_table' => 'atividade')
-//    );
-//    var $has_one = array('categoria_servico');
+
+    /* relação n:n com usuário */
+    var $has_many = array(
+        'usuario' => array(
+            'class' => 'Usuario_model',
+            'other_field' => 'usuario',
+            'join_self_as' => 'usuario',
+            'join_other_as' => 'grupo_usuario',
+            'join_table' => 'grupo_usuario_x_usuario')
+    );
+
     var $created_field = 'cadastro';
     var $local_time = TRUE;
     var $validation = array(
@@ -30,7 +29,6 @@ class Grupo_usuario_model extends DataMapper {
     function __construct($id = NULL) {
         parent::__construct($id);
     }
-
 }
 
 /* End of file grupo_usuario.php */

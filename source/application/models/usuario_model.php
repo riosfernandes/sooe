@@ -4,16 +4,10 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Usuario_model extends DataMapper {
-    /*
-     * se não especificado o datamapper entende que a tabela tem o mesmo 
-     * nome do modelo com um 's' no final
-     */
 
     var $table = 'usuario';
-    /*
-     * relacionamentos um para muitos
-     */
-    var $has_one = array("tipo_usuario", "situacao");
+
+    var $has_one = array("tipo_usuario", "situacao");        
     var $created_field = 'cadastro';
     var $local_time = TRUE;
     var $validation = array(
@@ -22,7 +16,7 @@ class Usuario_model extends DataMapper {
             'rules' => array('required', 'trim', 'min_length' => 3, 'max_length' => 45)
         ),
         'login' => array(
-            'label' => 'Nome de Usuário',
+            'label' => 'Nome de Usuï¿½rio',
             'rules' => array('required', 'trim', 'unique', 'min_length' => 3, 'max_length' => 45)
         ),
         'senha' => array(
@@ -34,11 +28,11 @@ class Usuario_model extends DataMapper {
             'rules' => array('required')
         ),
         'tipo_usuario_id' => array(
-            'label' => 'Tipo de Usuário',
+            'label' => 'Tipo de Usuï¿½rio',
             'rules' => array('required')
         ),
         'email' => array(
-            'label' => 'Endereço de Email',
+            'label' => 'Endereï¿½o de Email',
             'rules' => array('required', 'trim', 'valid_email')
         )
     );
@@ -59,6 +53,7 @@ class Usuario_model extends DataMapper {
             $this->{$field} = sha1($this->salt . $this->{$field});
         }
     }
+
 }
 
 /* End of file usuario_model.php */

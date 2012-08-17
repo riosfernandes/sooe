@@ -10,7 +10,7 @@ class MY_Non_Public_Controller extends MY_Controller {
     function isLogado() {
         $u = $this->session->userdata('usuario_logado');
         if (!$u) {
-            redirect('usuario/login');
+            redirect('usuario/usuario');
         }
     }   
     
