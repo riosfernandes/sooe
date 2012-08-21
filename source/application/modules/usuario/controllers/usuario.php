@@ -1,5 +1,4 @@
 ﻿<?php
-
 //@todo: salvar na base o id da session?
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -34,6 +33,7 @@ class Usuario extends MY_Controller_Admin {
     /* método utilizando javascript para realizar
      * o post.
      */
+
     function entrar() {
         //obter o usuário e a senha e tentar efetuar o login
         $usuario = isset($_POST['username']) ? $_POST['username'] : '';
@@ -48,8 +48,8 @@ class Usuario extends MY_Controller_Admin {
             echo json_encode($var);
             return false;
         }
-        
-         $this->load->model('usuario_model');
+
+        $this->load->model('usuario_model');
 
         $u = new Usuario_model();
         $u->where('login', $usuario);
@@ -162,15 +162,15 @@ class Usuario extends MY_Controller_Admin {
 //            return false;
 //        }
     }
-    
+
     private function enviar_email($email, $senha) {
         throw new Exception('testando excessão');
-        
+
         /* @todo: implementar o envio de email para o usuário
          * @todo: logar a solicitação de senha por email informando
          * o usuário.
          */
-        
+
         $mensagem = 'Senha para acesso solicitada: ' + senha;
 
         $this->load->library('email');
@@ -187,37 +187,53 @@ class Usuario extends MY_Controller_Admin {
 
 //        echo $this->email->print_debugger();
     }
-    
-    public function novo_usuario(){       
+
+    public function novo_usuario() {
         $this->load_page_novo_usuario();
     }
-    
-    private function load_page_novo_usuario(){
+
+    private function load_page_novo_usuario() {
         $this->data['message'] = $this->session->flashdata('message');
 
-        $grupos_usuario = $this->get_grupos_usuario();
-        $tipos_usuario = $this->get_tipos_usuario();
-        
+        $this->data['grupos_usuario'] = array();
+        $this->data['tipos_usuario'] = array();
+
         $this->template->set('js_files', array($this->get_js_formatado('usuario/novo_usuario')));
         $this->template->set('css_files', array($this->get_css_formatado('usuario/novo_usuario')));
         $this->template->set('subtitle', 'Novo Usuário');
         $this->template->load('template_teste', 'novo_usuario', $this->data);
     }
-    
-    private function get_grupos_usuario(){
+
+    private function get_grupos_usuario() {
         $grupos = new Grupo_usuario_model();
-        $grupos_usuarios = array();
-        foreach($grupos->get() as $g){
-            $grupos_usuarios['id'] = $g->id;
-            $grupos_usuarios['descricao'] = $g->descricao;
-        }
-        return $grupos_usuarios;
+        return $grupos->get();
     }
-    
-    private function get_tipos_usuario(){
+
+    private function get_tipos_usuario() {
         $tipos = new Tipo_usuario_model();
         return $tipos->get();
     }
+
+    public function get_grupos_usuario_dropdown() {
+        $list = $this->get_grupos_usuario();
+        $dados = array();
+        foreach ($list as $l) {
+            $dados['grupos_usuario'][$l->id]['id'] = $l->id;
+            $dados['grupos_usuario'][$l->id]['descricao'] = $l->descricao;
+        }
+        $this->load->view('usuario/grupo_usuario_dropdown', $dados);
+    }
+
+    public function get_tipos_usuario_dropdown() {
+        $list = $this->get_tipos_usuario();
+        $dados = array();
+        foreach ($list as $l) {
+            $dados['tipos_usuario'][$l->id]['id'] = $l->id;
+            $dados['tipos_usuario'][$l->id]['descricao'] = $l->descricao;
+        }
+        $this->load->view('usuario/tipo_usuario_dropdown', $dados);
+    }
+
 }
 
 /* End of file login.php */
