@@ -36,7 +36,7 @@
             <li><a href="<?php echo site_url('tipo_usuario') ?>">Tipo de Usuário</a></li>                        
             <li><a href="<?php echo site_url('situacao_usuario') ?>">Situação de Usuário</a></li>
             <li><a href="<?php echo site_url('grupo_usuario') ?>">Grupo de Usuário</a></li>
-            <li><a href="<?php echo site_url('usuario/novo_usuario') ?>">Novo Usuário</a></li>
+            <li><a href="<?php echo site_url('usuario/usuario_view') ?>">Usuário</a></li>
         </ul>
     </li>
 </ul>

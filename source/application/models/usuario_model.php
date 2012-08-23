@@ -7,7 +7,10 @@ class Usuario_model extends DataMapper {
 
     var $table = 'usuario';
 
-    var $has_one = array("tipo_usuario", "situacao");        
+    var $has_one = array("tipo_usuario", "situacao_usuario");
+    
+    var $has_many = array('grupo' => 'grupo_usuario');
+
     var $created_field = 'cadastro';
     var $local_time = TRUE;
     var $validation = array(

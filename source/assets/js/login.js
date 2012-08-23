@@ -23,12 +23,12 @@ $(function(){
         var username = $('#fieldUsername').val();
         var password = $('#fieldPassword').val();        
         if(username.length == 0 || password.length == 0){
-            showLoginErrors(['Dados de login n�o informados.']);
+            showLoginErrors(['Dados de login não informados.']);
             return false;
         }
         
         $.post(
-            'usuario/entrar',
+            'login/entrar',
             {
                 username        :username,
                 password        :password
@@ -55,11 +55,11 @@ $(function(){
         var login = $('#fieldUsername').val();
         var email = $('#fieldEmail').val();
         if(login.length == 0 && email.length == 0){
-            showLoginErrors(["Necessário informar o usuário", "Necessário informar o e-mail!"]);
+            showLoginErrors(["Necessário informar o usuário", "Necessário informar o email!"]);
             return false;
         }
         else if(email.length == 0){
-            showLoginErrors(['Necessário informar o e-mail!']);
+            showLoginErrors(['Necessário informar o email!']);
             return false;
         }
         else if(login.length == 0){
@@ -68,7 +68,7 @@ $(function(){
         }
         
         $.post(
-            'usuario/recuperar_senha',
+            'login/recuperar_senha',
             {
                 login   :login,
                 email   :email
