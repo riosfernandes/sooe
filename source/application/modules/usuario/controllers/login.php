@@ -12,17 +12,10 @@ class Login extends MY_Controller_Admin {
     }
 
     function index() {
-        //validation rules
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('username', 'username', 'required');
-        $this->form_validation->set_rules('password', 'password', 'trim|required|md5');
-        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-
-        //método utilizando o post via jquery
-        $this->loadLogin();
+        $this->load_login();
     }
 
-    private function loadLogin() {
+    private function load_login() {
         $data['titulo'] = 'Login';
         $data['css_files'] = array('login');
         $data['js_files'] = array('jquery-1.7.2.min', 'jquery.tools.min', 'login');
@@ -63,14 +56,32 @@ class Login extends MY_Controller_Admin {
             echo json_encode($var);
             return false;
         }
-        
+
+        /* verificar a situação do usuário que está
+         * tentando efetuar login 
+         */
         $situacao = new Situacao_usuario_model();
-        $s = $situacao->get($u->situacao_usuario_id);
-        
-        if($s == "Novo" || $s == "Expirado"){
-            $this->trocar_senha($u);
-        }
-        else if($s == "Inativo"){
+        $s = $situacao->where('id', $u->situacao_usuario_id)->get();
+
+        if ($s->descricao == "Novo") {
+            $var = array(
+                'success' => false,
+                'trocar_senha' => true,
+                'url' => 'login/load_alterar_senha',
+                'message' => htmlentities('Bem vindo, ' . $u->nome . '! Efetue a troca de sua senha de acesso.')
+            );
+            echo json_encode($var);
+            return false;
+        } else if ($s->descricao == "Expirado") {
+            $var = array(
+                'success' => false,
+                'trocar_senha' => true,
+                'url' => 'login/load_alterar_senha',
+                'message' => htmlentities('Você não realiza login no sistema a muito tempo, sendo assim, você deve realizar a troca de sua senha de acesso!')
+            );
+            echo json_encode($var);
+            return false;
+        } else if ($s->descricao == "Inativo") {
             $var = array(
                 'success' => false,
                 'message' => htmlentities('Usuário inativo!')
@@ -108,10 +119,63 @@ class Login extends MY_Controller_Admin {
         return TRUE;
     }
 
-    function trocar_senha() {
-//        @todo: trocar senha
-//        insere data e hora do ultima troca de login
-//        $u->update('ultima_troca', date("Y-m-d H:i:s"));
+    function load_alterar_senha() {
+        $data['titulo'] = 'Login';
+        $data['css_files'] = array('alteracao_senha');
+        $data['js_files'] = array('jquery-1.7.2.min', 'jquery.tools.min', 'alteracao_senha');
+
+        $this->load->view('alteracao_senha', $data);
+    }
+
+    function alterar_senha() {
+        $login = isset($_POST['login']) ? $_POST['login'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
+        $password_new_1 = isset($_POST['password_new_1']) ? $_POST['password_new_1'] : '';
+        $password_new_2 = isset($_POST['password_new_2']) ? $_POST['password_new_2'] : '';
+        
+        if(strlen($login) == 0){
+            $var = array(
+                'success' => false,
+                'message' => htmlentities('Login do usuário não informado!')
+            );
+            echo json_encode($var);
+            return false;
+        }
+        else if(strlen($password) == 0){
+            $var = array(
+                'success' => false,
+                'message' => htmlentities('Senha atual do usuário não informada!')
+            );
+            echo json_encode($var);
+            return false;
+        }
+        else if(strlen($password_new_1) == 0){
+            $var = array(
+                'success' => false,
+                'message' => htmlentities('Nova senha não informada!')
+            );
+            echo json_encode($var);
+            return false;
+        }
+        else if(strlen($password_new_2) == 0){
+            $var = array(
+                'success' => false,
+                'message' => htmlentities('Confirmação de nova senha não informada!')
+            );
+            echo json_encode($var);
+            return false;
+        }
+        else if($password_new_1 !== $password_new_2){
+            $var = array(
+                'success' => false,
+                'message' => htmlentities('Confirmação de senha não confere com a nova senha informada!')
+            );
+            echo json_encode($var);
+            return false;
+        }
+        
+        $usuario = new Usuario_model();
+        $u = $usuario->where('login', $login)->where('senha', $password)->get(1);
     }
 
     function logout() {
@@ -178,6 +242,7 @@ class Login extends MY_Controller_Admin {
 //
 //        $this->email->send();
     }
+
 }
 
 /* End of file login.php */

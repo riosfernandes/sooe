@@ -30,14 +30,14 @@
                     <?php echo form_label('Usuário', 'username') ?>
                     <?php echo form_input('username', set_value('username'), 'id="fieldUsername" maxlength="12"') ?>
                     <?php echo form_label('Senha', 'password') ?>
-<?php echo form_password('password', '', 'id="fieldPassword" maxlength="8"') ?>
-<?php echo form_submit('submit', 'Entrar', 'id="btnEntrar" class="button"') ?>
+                    <?php echo form_password('password', '', 'id="fieldPassword" maxlength="8"') ?>
+                    <?php echo form_submit('submit', 'Entrar', 'id="btnEntrar" class="button"') ?>
                 </div>
                 <div id="fieldset">
                     <legend>Informe seu email para recuperar sua senha!</legend>
                     <?php echo form_label('Email', 'email') ?>
-<?php echo form_input('email', '', 'id="fieldEmail" maxlength="45"') ?>
-<?php echo form_submit('submit', 'Recuperar', 'id="btnRecuperar" class="button pink"') ?>
+                    <?php echo form_input('email', '', 'id="fieldEmail" maxlength="45"') ?>
+                    <?php echo form_submit('submit', 'Recuperar', 'id="btnRecuperar" class="button pink"') ?>
                 </div>
             </div>
         </div>

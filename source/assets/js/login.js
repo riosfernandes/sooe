@@ -38,7 +38,13 @@ $(function(){
                     $(location).attr('href', data.url);
                 }
                 else{
-                    showLoginErrors([data.message]);
+                    /* troca de senha para usuários novos e expirados */
+                    if(data.trocar_senha){
+                        alert(data.message);
+                        $(location).attr('href', data.url);
+                    }
+                    else
+                        showLoginErrors([data.message]);
                 }
             },
             'json'
