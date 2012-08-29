@@ -14,7 +14,7 @@
             <a class="user_change_password" href="<?php echo site_url('login/alterar_senha') ?>">Alterar Senha</a>
         </div>        
         <div>
-            <a href="<?php echo site_url('login/logout') ?>">
+            <a href="<?php echo site_url('usuario/logout') ?>">
                 <div class="img_sair">&nbsp;</div>
             </a>
         </div>

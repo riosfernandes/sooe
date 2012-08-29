@@ -274,12 +274,6 @@ class Login extends MY_Controller_Admin {
         }
     }
 
-    function logout() {
-        $this->session->unset_userdata('usuario_logado');
-        $this->session->sess_destroy();
-        redirect('login');
-    }
-
     function recuperar_senha() {
 //        @todo: fazer a recuperação de senha enviando e-mail para o usuário
 //        try {

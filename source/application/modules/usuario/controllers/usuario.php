@@ -12,7 +12,7 @@ class Usuario extends MY_Non_Public_Controller {
     }
 
     function index() {
-        $this->template->set('subtitle', 'Categoria de Serviço');
+        $this->template->set('subtitle', 'Usuário');
         $this->template->load('template_teste', 'crudpage', $this->get_crud());
     }
 
@@ -57,6 +57,12 @@ class Usuario extends MY_Non_Public_Controller {
             $post_array['senha'] = md5($post_array['login']);            
         }
         return $post_array;
+    }
+    
+    function logout(){
+        $this->session->unset_userdata('usuario_logado');
+        $this->session->sess_destroy();
+        redirect('usuario/login');
     }
 }
 
