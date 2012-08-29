@@ -9,6 +9,12 @@ $(function(){
         $(this).parent().fadeOut(200);
     });
     
+    if($('#txtLogin').val().length == 0){
+        $('#txtLogin').focus();
+    }else{
+        $('#txtPassword').focus();
+    }
+    
     /* realiza o submit da entrada do usuario
      * no sistema, validando os dados de entrada
      * e tratamento de sa�da
@@ -44,7 +50,7 @@ $(function(){
         }
         
         $.post(
-            'login/alterar_senha',
+            'alterar_senha',
             {
                 login           :login,
                 password        :password,
@@ -53,6 +59,7 @@ $(function(){
             },
             function(data){
                 if(data.success){
+                    alert(data.message);
                     $(location).attr('href', data.url);
                 }
                 else{

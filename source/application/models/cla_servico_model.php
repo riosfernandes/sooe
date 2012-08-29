@@ -27,7 +27,7 @@ class Cla_servico_model extends DataMapper {
         ),
         'codigo' => array(
             'label' => 'Codigo',
-            'rules' => array('required', 'trim', 'min_length' => 2, 'max_length' => 2)
+            'rules' => array('required', 'trim', 'min_length' => 2, 'max_length' => 8)
         ),
         'categoria_servico_id' => array(
             'label' => 'Categoria',

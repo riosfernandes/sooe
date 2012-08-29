@@ -8,13 +8,17 @@
 class MY_Controller extends CI_Controller {
 
     function __construct() {
-        parent::__construct();
+        parent::__construct();        
         //pode difinir aqui css e js que ser�o padr�o para todas as telas.
         $this->template->set('css_files', $this->get_css());
         $this->template->set('js_files', $this->get_js());
 
         $this->CI = & get_instance();
         $this->session = & $this->CI->session;
+        
+        $this->load->library('grocery_CRUD');
+        $this->load->database();
+        $this->load->helper('url');
     }
 
     /*

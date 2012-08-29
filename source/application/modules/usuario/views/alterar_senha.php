@@ -23,7 +23,7 @@
             <div class="fieldset">
                 <div class="fields">
                     <?php echo form_label('Login', 'lblLogin') ?>
-                    <?php echo form_input('login', '', 'id="txtLogin"') ?>
+                    <?php echo form_input('login', $login, 'id="txtLogin"') ?>
                 </div>
                 <div class="fields">
                     <?php echo form_label('Senha atual', 'lblPassword') ?>

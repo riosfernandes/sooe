@@ -28,7 +28,7 @@ class Grupo_servico_model extends DataMapper {
     var $validation = array(
         'codigo' => array(
             'label' => 'Codigo',
-            'rules' => array('required', 'trim', 'min_length' => 3, 'max_length' => 45)
+            'rules' => array('required', 'trim', 'min_length' => 3, 'max_length' => 20)
         ),
         'descricao' => array(
             'label' => 'Descrição',

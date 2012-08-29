@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 //@todo: salvar na base o id da session?
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -67,7 +68,7 @@ class Login extends MY_Controller_Admin {
             $var = array(
                 'success' => false,
                 'trocar_senha' => true,
-                'url' => 'login/load_alterar_senha',
+                'url' => 'login/load_alterar_senha?login=' . $u->login,
                 'message' => htmlentities('Bem vindo, ' . $u->nome . '! Efetue a troca de sua senha de acesso.')
             );
             echo json_encode($var);
@@ -120,62 +121,157 @@ class Login extends MY_Controller_Admin {
     }
 
     function load_alterar_senha() {
+        $data['login'] = isset($_GET['login']) ? $_GET['login'] : '';
         $data['titulo'] = 'Login';
-        $data['css_files'] = array('alteracao_senha');
-        $data['js_files'] = array('jquery-1.7.2.min', 'jquery.tools.min', 'alteracao_senha');
+        $data['css_files'] = array('alterar_senha');
+        $data['js_files'] = array('jquery-1.7.2.min', 'jquery.tools.min', 'alterar_senha');
 
-        $this->load->view('alteracao_senha', $data);
+        $this->load->view('alterar_senha', $data);
     }
 
     function alterar_senha() {
-        $login = isset($_POST['login']) ? $_POST['login'] : '';
-        $password = isset($_POST['password']) ? $_POST['password'] : '';
-        $password_new_1 = isset($_POST['password_new_1']) ? $_POST['password_new_1'] : '';
-        $password_new_2 = isset($_POST['password_new_2']) ? $_POST['password_new_2'] : '';
-        
-        if(strlen($login) == 0){
+        try {
+            $login = isset($_POST['login']) ? $_POST['login'] : '';
+            $password = isset($_POST['password']) ? $_POST['password'] : '';
+            $password_new_1 = isset($_POST['password_new_1']) ? $_POST['password_new_1'] : '';
+            $password_new_2 = isset($_POST['password_new_2']) ? $_POST['password_new_2'] : '';
+
+            //salvando o hash da senha
+            $password_hash = md5($password);
+            $password_new_hash = md5($password_new_1);
+
+            /*
+             * validar entradas do usuário
+             */
+            if (strlen($login) == 0) {
+                $var = array(
+                    'success' => false,
+                    'message' => htmlentities('Login do usuário não informado!')
+                );
+                echo json_encode($var);
+                return false;
+            } else if (strlen($password) == 0) {
+                $var = array(
+                    'success' => false,
+                    'message' => htmlentities('Senha atual do usuário não informada!')
+                );
+                echo json_encode($var);
+                return false;
+            } else if (strlen($password_new_1) == 0) {
+                $var = array(
+                    'success' => false,
+                    'message' => htmlentities('Nova senha não informada!')
+                );
+                echo json_encode($var);
+                return false;
+            } else if (strlen($password_new_2) == 0) {
+                $var = array(
+                    'success' => false,
+                    'message' => htmlentities('Confirmação de nova senha não informada!')
+                );
+                echo json_encode($var);
+                return false;
+            } else if ($password_new_1 !== $password_new_2) {
+                $var = array(
+                    'success' => false,
+                    'message' => htmlentities('Confirmação de senha não confere com a nova senha informada!')
+                );
+                echo json_encode($var);
+                return false;
+            }
+
+            /*
+             * localizar usuário pelo login e senha 
+             */
+            $usuario = new Usuario_model();
+            $u = $usuario->where('login', $login)->where('senha', $password_hash)->get(1);
+            if (count($u->all) == 0) {
+                $var = array(
+                    'success' => false,
+                    'message' => htmlentities('Usuário informado não encontrado ou a senha informada não é a senha atual de acesso!')
+                );
+                echo json_encode($var);
+                return false;
+            } else {
+                /*
+                 * testar se a nova senha é igual a uma das últimas
+                 * senhas informadas pelo usuário, se for
+                 * não permitir seu uso. 
+                 */
+                if($password_new_hash == $password_hash){
+                    $var = array(
+                        'success' => false,
+                        'message' => htmlentities('A senha não pode ser identica a senha atual!')
+                    );
+                    echo json_encode($var);
+                    return false;
+                }
+                if ($password_new_hash == $u->senha_anterior1 ||
+                        $password_new_hash == $u->senha_anterior2 ||
+                        $password_new_hash == $u->senha_anterior3) {
+                    $var = array(
+                        'success' => false,
+                        'message' => htmlentities('A senha não pode ser identica as últimas 3 já informadas!')
+                    );
+                    echo json_encode($var);
+                    return false;
+                }
+
+                /*
+                 * obter a situação de usuário ativo 
+                 */
+                $situacao = new Situacao_usuario_model();
+                $s = $situacao->where('descricao', 'Ativo')->get(1);
+                if (count($s->all) == 0)
+                    throw new Exception('Situação "Ativo" não existente!');
+
+                /*
+                 * efetuar a troca de senha do usuário 
+                 */
+                $u->senha_anterior3 = $u->senha_anterior2;
+                $u->senha_anterior2 = $u->senha_anterior1;
+                $u->senha_anterior1 = $u->senha;
+                $u->senha = md5($password_new_1);
+                $u->ultima_troca = date('Y-m-d H:i:s');
+                $u->ultimo_acesso = date('Y-m-d H:i:s');
+                $u->situacao_usuario_id = $s->id;
+                $u->save();
+
+                /*
+                 * incluir o usuário na session 
+                 */
+                $usuario = array(
+                    'id' => $u->id,
+                    'nome' => $u->nome,
+                    'login' => $u->login,
+                    'email' => $u->email,
+                    'tipo_usuario_id' => $u->tipo_usuario_id,
+                    'situacao_id' => $u->situacao_id,
+                    'senha' => $u->senha,
+                    'ultima_troca' => $u->ultima_troca,
+                    'ultimo_acesso' => $u->ultimo_acesso
+                );
+                $this->session->set_userdata('usuario_logado', $usuario);
+
+                /*
+                 * direcionar para página principal do sistema 
+                 */
+                $var = array(
+                    'success' => true,
+                    'url' => site_url('welcome'),
+                    'message' => htmlentities('Troca efetuada com sucesso!')
+                );
+                echo json_encode($var);
+                return true;
+            }
+        } catch (Exception $ex) {
             $var = array(
                 'success' => false,
-                'message' => htmlentities('Login do usuário não informado!')
+                'message' => htmlentities($ex->getMessage())
             );
             echo json_encode($var);
             return false;
         }
-        else if(strlen($password) == 0){
-            $var = array(
-                'success' => false,
-                'message' => htmlentities('Senha atual do usuário não informada!')
-            );
-            echo json_encode($var);
-            return false;
-        }
-        else if(strlen($password_new_1) == 0){
-            $var = array(
-                'success' => false,
-                'message' => htmlentities('Nova senha não informada!')
-            );
-            echo json_encode($var);
-            return false;
-        }
-        else if(strlen($password_new_2) == 0){
-            $var = array(
-                'success' => false,
-                'message' => htmlentities('Confirmação de nova senha não informada!')
-            );
-            echo json_encode($var);
-            return false;
-        }
-        else if($password_new_1 !== $password_new_2){
-            $var = array(
-                'success' => false,
-                'message' => htmlentities('Confirmação de senha não confere com a nova senha informada!')
-            );
-            echo json_encode($var);
-            return false;
-        }
-        
-        $usuario = new Usuario_model();
-        $u = $usuario->where('login', $login)->where('senha', $password)->get(1);
     }
 
     function logout() {

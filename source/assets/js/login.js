@@ -12,6 +12,12 @@ $(function(){
         $(this).parent().fadeOut(200);
     });
     
+    if($('#fieldUsername').val().length == 0){
+        $('#fieldUsername').focus();
+    }else{
+        $('#fieldPassword').focus();
+    }
+    
     /* realiza o submit da entrada do usu�rio
      * no sistema, validando os dados de entrada
      * e tratamento de sa�da

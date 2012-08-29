@@ -19,24 +19,20 @@ class Usuario_model extends DataMapper {
             'rules' => array('required', 'trim', 'min_length' => 3, 'max_length' => 45)
         ),
         'login' => array(
-            'label' => 'Nome de Usu�rio',
+            'label' => 'Nome de Usuário',
             'rules' => array('required', 'trim', 'unique', 'min_length' => 3, 'max_length' => 45)
         ),
         'senha' => array(
             'label' => 'Senha',
             'rules' => array('required', 'trim', 'min_length' => 3)//, 'encrypt'
         ),
-        'situacao_id' => array(
+        'situacao_usuario_id' => array(
             'label' => 'Status',
             'rules' => array('required')
         ),
         'tipo_usuario_id' => array(
-            'label' => 'Tipo de Usu�rio',
+            'label' => 'Tipo de Usuário',
             'rules' => array('required')
-        ),
-        'email' => array(
-            'label' => 'Endere�o de Email',
-            'rules' => array('required', 'trim', 'valid_email')
         )
     );
 
