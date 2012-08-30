@@ -20,7 +20,7 @@ class Usuario extends MY_Non_Public_Controller {
         $this->data['message'] = $this->session->flashdata('message');
 
         $crud = new grocery_CRUD();
-        $crud->set_theme('datatables');
+        $crud->set_theme(GROCERY_CRUD_THEME);
         $crud->set_table('usuario');
         $crud->set_subject('Usuário');
         $crud->unset_columns('id', 'senha', 'senha_anterior1', 'senha_anterior2', 'senha_anterior3', 'ultima_troca', 'cadastro');
@@ -54,7 +54,7 @@ class Usuario extends MY_Non_Public_Controller {
          */
         if (empty($post_array['id'])) {
             $post_array['situacao_usuario_id'] = '3';
-            $post_array['senha'] = md5($post_array['login']);            
+            $post_array['senha'] = md5($post_array['login']);
         }
         return $post_array;
     }

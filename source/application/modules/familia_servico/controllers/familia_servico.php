@@ -20,7 +20,7 @@ class Familia_servico extends MY_Non_Public_Controller {
         $this->data['message'] = $this->session->flashdata('message');
         
         $crud = new grocery_CRUD();
-        $crud->set_theme('datatables');
+        $crud->set_theme(GROCERY_CRUD_THEME);
         $crud->set_table('familia_servico');
         $crud->set_subject('Família de Serviço');        
         $crud->columns('id', 'cla_servico_id', 'codigo', 'descricao');

@@ -20,7 +20,7 @@ class Cla_servico extends MY_Non_Public_Controller {
         $this->data['message'] = $this->session->flashdata('message');
         
         $crud = new grocery_CRUD();
-        $crud->set_theme('datatables');
+        $crud->set_theme(GROCERY_CRUD_THEME);
         $crud->set_table('cla_servico');
         $crud->set_subject('Clã de Serviço');        
         $crud->set_relation('categoria_id', 'categoria_servico', 'codigo');

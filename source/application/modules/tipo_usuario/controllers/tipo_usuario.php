@@ -20,7 +20,7 @@ class Tipo_usuario extends MY_Non_Public_Controller {
         $this->data['message'] = $this->session->flashdata('message');
         
         $crud = new grocery_CRUD();
-        $crud->set_theme('datatables');
+        $crud->set_theme(GROCERY_CRUD_THEME);
         $crud->set_table('tipo_usuario');
         $crud->set_subject('Tipo de Usuário');
         $crud->columns('id', 'descricao');

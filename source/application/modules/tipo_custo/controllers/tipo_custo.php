@@ -20,7 +20,7 @@ class Tipo_custo extends MY_Non_Public_Controller {
         $this->data['message'] = $this->session->flashdata('message');
         
         $crud = new grocery_CRUD();
-        $crud->set_theme('datatables');
+        $crud->set_theme(GROCERY_CRUD_THEME);
         $crud->set_table('tipo_custo');
         $crud->set_subject('Tipo de Custo');        
         $crud->columns('id', 'descricao');
