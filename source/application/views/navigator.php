@@ -24,11 +24,14 @@
             <li><a href="<?php echo site_url('origem_insumo') ?>">Origem de Insumo</a></li>
             <li><a href="<?php echo site_url('tipo_insumo') ?>">Tipo de Insumo</a></li>
             <li><a href="<?php echo site_url('tipo_unidade') ?>">Tipo de Unidade</a></li>
+            <li><a href="<?php echo site_url('insumo') ?>">Insumo</a></li>
+            <li><a href="<?php echo site_url('insumo/show_preco_insumo') ?>">Preço de Insumo</a></li>
         </ul>
     </li>
     <li><a href="#">Fornecedores</a> 
         <ul> 
-            <li><a href="<?php echo site_url('tipo_fornecedor') ?>">Tipo de Fornecedor</a></li>            
+            <li><a href="<?php echo site_url('tipo_fornecedor') ?>">Tipo de Fornecedor</a></li>
+            <li><a href="<?php echo site_url('fornecedor') ?>">Fornecedor</a></li>
         </ul>
     </li>
     <li><a href="#">Usuários</a> 
