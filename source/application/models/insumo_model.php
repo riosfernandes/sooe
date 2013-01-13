@@ -17,9 +17,8 @@ class Insumo_model extends DataMapper {
 //            'join_other_as' => 'projeto',
 //            'join_table' => 'atividade')
 //    );
-    var $has_one = array('tipo_insumo');
-    var $has_one = array('tipo_unidade');
-    var $has_one = array('origem_insumo');
+    var $has_one = array('tipo_insumo', 'tipo_unidade', 'origem_insumo');
+    
     var $created_field = 'cadastro';
     var $local_time = TRUE;
     var $validation = array(

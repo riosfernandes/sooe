@@ -1,5 +1,5 @@
-INSERT INTO situacao (descricao) VALUES ('Ativo');
-INSERT INTO situacao (descricao) VALUES ('Inativo');
+INSERT INTO situacao_usuario (descricao) VALUES ('Ativo');
+INSERT INTO situacao_usuario (descricao) VALUES ('Inativo');
 
 INSERT INTO tipo_usuario (descricao) VALUES ('Administrador');
 INSERT INTO tipo_usuario (descricao) VALUES ('Comum');
