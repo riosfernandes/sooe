@@ -11,18 +11,18 @@ root {
 }
 
 #header{    
-    height: 100px;
+    height: 110px;
     text-align: center;
     padding: 4px;
 }
 
 #logo{
     float: left;    
-    background-image: url('../../assets/images/view/template/gaq_logo.png');
+    background-image: url('../../assets/images/view/template/logo.png');
     background-color: #fff;
     background-repeat: no-repeat;
     /*    width: 80%;*/
-    width: 375px;
+    width: 227px;
     height: 100%;
 }
 

@@ -1,16 +1,17 @@
-<div id="div_orcamento_insumo">
-
-    <div id="div_forncedor" class="ui-widget">
-        <label for="fornecedor">Fornecedor: </label>
-        <input id="fornecedor" />
+<div id="form">
+    <div class="block">
+        <div id="div_forncedor" class="ui-widget">
+            <label for="fornecedor">Fornecedor: </label>
+            <input id="fornecedor" />
+        </div>
+        <div id="div_insumo" class="ui-widget">
+            <label for="insumo">Insumo: </label>
+            <input id="insumo" />
+        </div>
     </div>
-    <div id="div_insumo" class="ui-widget">
-        <label for="insumo">Insumo: </label>
-        <input id="insumo" />
-    </div>
-</di>
+</div>
 
-<?php echo br(9); ?>
+<?php echo br(3); ?>
 
 <div id="resultado"></div>
 
