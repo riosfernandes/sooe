@@ -71,8 +71,8 @@ class Insumo extends MY_Non_Public_Controller {
 
         foreach ($rs->get() as $r) {
             $data['result'][$r->id]['id'] = $r->id;
-            $data['result'][$r->id]['descricao'] = "$r->id --- $r->nome";
-            $data['result'][$r->id]['label'] = "CNPJ: $r->cnpj, $r->nome - CD: $r->codigo - IE: $r->inscricao_estadual";
+            $data['result'][$r->id]['descricao'] = "$r->id :: [$r->codigo] $r->nome";
+            $data['result'][$r->id]['label'] = "[$r->codigo] $r->nome";
         }
 
         if (isset($data['result']))
@@ -104,8 +104,8 @@ class Insumo extends MY_Non_Public_Controller {
 
             foreach ($rs->get() as $r) {
                 $data['result'][$r->id]['id'] = $r->id;
-                $data['result'][$r->id]['descricao'] = "$r->id --- $r->descricao";
-                $data['result'][$r->id]['label'] = "CD: $r->codigo, $r->descricao";
+                $data['result'][$r->id]['descricao'] = "$r->id :: [$r->codigo] $r->descricao";
+                $data['result'][$r->id]['label'] = "[$r->codigo] $r->descricao";
             }
 
             if (isset($data)) {
@@ -120,7 +120,7 @@ class Insumo extends MY_Non_Public_Controller {
     function get_preco() {
         $insumo_id = $this->input->post('insumo_desc') + 0;
         $fornecedor_id = $this->input->post('fornecedor_desc') + 0;
-
+        
         if ($insumo_id == 0 || $fornecedor_id == 0) {
             return;
         }
@@ -137,16 +137,15 @@ class Insumo extends MY_Non_Public_Controller {
         // tem que repetir, pois depois do get() o DataMapper apagar as clausulas wheres.
         $rs->where($wheres);
         
-        $i =0;
          foreach ($rs->get() as $r) {
-                $data['result'][++$i]['insumo_id'] = $r->insumo_id;
-                $data['result'][++$i]['fornecedor_id'] = $r->fornecedor_id;
-                $data['result'][++$i]['vigencia'] = $r->vigencia;
-                $data['result'][++$i]['valor'] = $r->valor;
-                $data['result'][++$i]['cadastro'] = $r->cadastro;
+                $data['result'][$r->insumo_id]['insumo_id'] = $r->insumo_id;
+                $data['result'][$r->insumo_id]['fornecedor_id'] = $r->fornecedor_id;
+                $data['result'][$r->insumo_id]['vigencia'] = strftime("%d/%m/%Y %H:%M:%S", strtotime($r->vigencia));
+                $data['result'][$r->insumo_id]['valor'] = $r->valor;
+                $data['result'][$r->insumo_id]['cadastro'] = $r->cadastro;
             }
-        
-        echo json_encode(var_dump($data));
+            
+        echo $this->load->view('preco_insumo', $data);
     }
 }
 

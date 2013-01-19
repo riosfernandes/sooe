@@ -1,26 +1,23 @@
 <?php
+
+//print_r($result);
+
+if (isset($result)) {
+    echo '<h2>Preços Existentes</h2>';
+}
+
+echo '<table>';
+if (isset($result)) {
+    echo '<tr>';
+    echo '<th>Valor</th>';
+    echo '<th>Vigência</th>';
+    echo '</tr>';
+    foreach ($result as $p) {
+        echo '<tr id="p' . $p['insumo_id'] . '">';
+        echo '<td>' . $p['valor'] . '</td>';
+        echo '<td>' . $p['vigencia'] . '</td>';
+        echo '</tr>';
+    }
+}
+echo '</table>'
 ?>
-
-<div>
-    <label>Fornecedor</label>
-    <input id="txtFornecedor" type="text"/>
-</div>
-
-<div>
-    <label>Insumo</label>
-    <input id="txtInsumo" type="text"/>
-</div>
-
-<div id="lista-precos-fornecedor" style="padding:30px; color: brown">
-Aqui será exibida a lista de vigências de preços para o insumo naquele fornecedor, se já existir. O usuário só poderá selecionar um registro e atualizá-lo se a vigência for superior a data atual. Vigências passadas não poderão ser alteradas e devem ser substituídas por novas vigências.
-</div>
-
-<div>
-    <label>Vigência</label>
-    <input id="txtDataVigencia" type="text"/>
-    
-    <label>Preço</label>
-    <input id="txtPreco" type="text"/>
-</div>
-
-<input id="btnSalvar" type="button" value="Salvar"/>

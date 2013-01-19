@@ -1,0 +1,22 @@
+.ui-widget input{
+    width: 99%;
+    border: 1px double #CCC;
+    padding: 3px 6px;    
+    outline: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: -1px 1px 0px #fff;
+    -webkit-box-shadow: -1px 1px 0px #fff;
+    box-shadow: -1px 1px 0px #fff;
+    background-color: #ededed;
+    moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #444;
+}
+
+.ui-widget input:focus{
+    background-color: #fff;
+}
