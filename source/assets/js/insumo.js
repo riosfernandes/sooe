@@ -2,8 +2,11 @@ $(main);
 
 function main()
 {    
+    $('#datepicker').datepicker();
+    
     $("#div_insumo").hide();
     $("#divTableResult").hide();
+    $('#precos').hide();
 
     $('#fornecedor').autocomplete({
         source: function( request, response ) {
@@ -28,6 +31,15 @@ function main()
         minLength: 3,
         select: function( event, ui ) {     
             $("#div_insumo").show();
+            /*listar os preços para o fornecedor
+             *e insumo selecionados */            
+            resultado = $("#resultado");
+            
+            resultado.html('<p>Carregando...</p>');
+            resultado.load('insumo/get_preco',
+            {
+                fornecedor_desc        :$('#fornecedor').val()
+            });
         }
     });  
     
@@ -54,29 +66,7 @@ function main()
         },
         minLength: 3,
         select: function( event, ui ) {     
-            alert("exibir tabelas com precos")
-            
-            resultado = $("#resultado");
-            
-            resultado.html('<p>Carregando...</p>');
-            resultado.load('insumo/get_preco',
-            {
-                fornecedor_desc        :$('#fornecedor').val(),
-                insumo_desc            :$('#insumo').val()
-            });
-            
-//            $.post(
-        //                'insumo/get_preco',
-        //                {
-        //                    fornecedor_desc        :$('#fornecedor').val(),
-        //                    insumo_desc            :$('#insumo').val()
-        //                },
-        //                function(data){
-        //                    alert("Me exiba")
-        //                },
-        //                'json'
-        //                );
+            $('#precos').show();
         }
-    });    
-    
+    });
 }

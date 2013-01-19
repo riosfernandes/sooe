@@ -3,21 +3,10 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Tipo_insumo_model extends DataMapper {
+class Tipo_unidade_model extends DataMapper {
 
     var $table = 'tipo_unidade';
-//    /*
-//     * relacionamentos um para muitos
-//     */
-//    var $has_many = array(
-//        'servico' => array(
-//            'class' => 'Servico_model',
-//            'other_field' => 'servico',
-//            'join_self_as' => 'servico',
-//            'join_other_as' => 'projeto',
-//            'join_table' => 'atividade')
-//    );
-//    var $has_one = array('categoria_servico');
+
     var $created_field = 'cadastro';
     var $local_time = TRUE;
     var $validation = array(

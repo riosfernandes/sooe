@@ -85,19 +85,11 @@ class Insumo extends MY_Non_Public_Controller {
 
     public function find_insumo() {
         try {
-            $fornecedor_id = $this->input->post('fornecedor_desc');
-            $fornecedor_id = $fornecedor_id + 0; // o PHP soma o começo que é um número e discarta o resto, melhor que substring =)
             $termo = $this->input->post('term');
-
-//TODO: tem que buscar apenas os insumos que o fornecedor possui
-//        $rs = new Insumo_x_fornecedor_model();
-//        $rs->where('fornecedor_id', $fornecedor_id);
-//        $ids = $rs->get()->to_array('insumo_id');
 
             $this->load->model('insumo_model');
 
             $rs = new Insumo_model();
-//        $rs->where('id', $ids); 
             $rs->like('codigo', '%' . $termo . '%');
             $rs->or_like('descricao', '%' . $termo . '%');
             $rs->or_like('id', '%' . $termo . '%');
@@ -118,35 +110,60 @@ class Insumo extends MY_Non_Public_Controller {
     }
 
     function get_preco() {
-        $insumo_id = $this->input->post('insumo_desc') + 0;
         $fornecedor_id = $this->input->post('fornecedor_desc') + 0;
-        
-        if ($insumo_id == 0 || $fornecedor_id == 0) {
+
+        if ($fornecedor_id == 0) {
             return;
         }
 
         $wheres['fornecedor_id'] = $fornecedor_id;
-        $wheres['insumo_id'] = $insumo_id;
 
         $rs = new Insumo_x_fornecedor_model();
         $rs->where($wheres);
 
         $data = array();
-        $data["total"] = $rs->get()->result_count();
+        $total_registros = $rs->get()->result_count();
+        $data["total"] = $total_registros;
 
-        // tem que repetir, pois depois do get() o DataMapper apagar as clausulas wheres.
-        $rs->where($wheres);
-        
-         foreach ($rs->get() as $r) {
-                $data['result'][$r->insumo_id]['insumo_id'] = $r->insumo_id;
-                $data['result'][$r->insumo_id]['fornecedor_id'] = $r->fornecedor_id;
+        if ($total_registros > 0) {
+            // tem que repetir, pois depois do get() o DataMapper apagar as clausulas wheres.
+            $rs->where($wheres);
+            foreach ($rs->get() as $r) {
+                //dados do insumo
+                $insumo_model = new Insumo_model();
+                $insumo_obj = $insumo_model->where('id', $r->insumo_id)->get();
+                $insumo['id'] = $insumo_obj->id;
+                $insumo['descricao'] = $insumo_obj->descricao;
+                $insumo['codigo'] = $insumo_obj->codigo;
+                $tipo_insumo_model = new Tipo_insumo_model();
+                $tipo_insumo_obj = $tipo_insumo_model->where('id', $insumo_obj->tipo_insumo_id)->get();
+                $tipo_insumo['id'] = $tipo_insumo_obj->id;
+                $tipo_insumo['descricao'] = $tipo_insumo_obj->descricao;
+                $insumo['tipo_insumo'] = $tipo_insumo;
+                $tipo_unidade_model = new Tipo_unidade_model();
+                $tipo_unidade_obj = $tipo_unidade_model->where('id', $insumo_obj->tipo_unidade_id)->get();
+                $tipo_unidade['id'] = $tipo_unidade_obj->id;
+                $tipo_unidade['descricao'] = $tipo_unidade_obj->descricao;
+                $tipo_unidade['sigla'] = $tipo_unidade_obj->sigla;
+                $insumo['tipo_unidade'] = $tipo_unidade;
+                //dados do fornecedor
+                $fornecedor_model = new Fornecedor_model();
+                $fornecedor_obj = $fornecedor_model->where('id', $fornecedor_id)->get();
+                $fornecedor['id'] = $fornecedor_obj->id;
+                $fornecedor['nome'] = $fornecedor_obj->nome;
+                $fornecedor['codigo'] = $fornecedor_obj->codigo;
+                
+                $data['result'][$r->insumo_id]['insumo'] = $insumo;
+                $data['result'][$r->insumo_id]['fornecedor'] = $fornecedor;
                 $data['result'][$r->insumo_id]['vigencia'] = strftime("%d/%m/%Y %H:%M:%S", strtotime($r->vigencia));
                 $data['result'][$r->insumo_id]['valor'] = $r->valor;
                 $data['result'][$r->insumo_id]['cadastro'] = $r->cadastro;
             }
-            
+        }
+        
         echo $this->load->view('preco_insumo', $data);
     }
+
 }
 
 /* End of file insumo.php */
