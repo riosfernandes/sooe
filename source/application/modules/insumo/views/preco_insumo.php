@@ -1,22 +1,4 @@
 <?php
-//print_r($result);
-?>
-
-<div id="form">
-    <div class="box">
-        <div>
-            <?php echo form_label('Preço'); ?>
-            <?php echo form_input('preco', 0.00, 'id="txt_preco_insumo"'); ?>
-        </div>
-        <div>
-            <?php echo form_label('Vigência'); ?>
-            <?php echo form_input('vigencia', date('d/m/Y'), 'id="txt_data_vigencia"'); ?>
-        </div>
-        <?php echo form_button('incluir_preco', 'Incluir', 'id="btn_incluir_preco" class="button"'); ?>
-    </div>
-</div>
-
-<?php
 if (isset($result)) {
     echo '<h2>Preços Existentes</h2>';
 } else {

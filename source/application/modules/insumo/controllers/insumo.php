@@ -44,11 +44,7 @@ class Insumo extends MY_Non_Public_Controller {
 
     function show_preco_insumo() {
         $this->template->set(
-                'css_files', array($this->get_css_formatado('insumo'),
-            $this->get_css_formatado('source/easyui'),
-            $this->get_css_formatado('source/icon'),
-            $this->get_css_formatado('source/demo'),
-            $this->get_css_formatado('source/source')
+                'css_files', array($this->get_css_formatado('insumo')
                 )
         );
         $this->template->set('js_files', array(
@@ -135,11 +131,13 @@ class Insumo extends MY_Non_Public_Controller {
                 $insumo['id'] = $insumo_obj->id;
                 $insumo['descricao'] = $insumo_obj->descricao;
                 $insumo['codigo'] = $insumo_obj->codigo;
+
                 $tipo_insumo_model = new Tipo_insumo_model();
                 $tipo_insumo_obj = $tipo_insumo_model->where('id', $insumo_obj->tipo_insumo_id)->get();
                 $tipo_insumo['id'] = $tipo_insumo_obj->id;
                 $tipo_insumo['descricao'] = $tipo_insumo_obj->descricao;
                 $insumo['tipo_insumo'] = $tipo_insumo;
+
                 $tipo_unidade_model = new Tipo_unidade_model();
                 $tipo_unidade_obj = $tipo_unidade_model->where('id', $insumo_obj->tipo_unidade_id)->get();
                 $tipo_unidade['id'] = $tipo_unidade_obj->id;
@@ -152,7 +150,7 @@ class Insumo extends MY_Non_Public_Controller {
                 $fornecedor['id'] = $fornecedor_obj->id;
                 $fornecedor['nome'] = $fornecedor_obj->nome;
                 $fornecedor['codigo'] = $fornecedor_obj->codigo;
-                
+
                 $data['result'][$r->insumo_id]['insumo'] = $insumo;
                 $data['result'][$r->insumo_id]['fornecedor'] = $fornecedor;
                 $data['result'][$r->insumo_id]['vigencia'] = strftime("%d/%m/%Y %H:%M:%S", strtotime($r->vigencia));
@@ -160,8 +158,37 @@ class Insumo extends MY_Non_Public_Controller {
                 $data['result'][$r->insumo_id]['cadastro'] = $r->cadastro;
             }
         }
-        
+
         echo $this->load->view('preco_insumo', $data);
+    }
+
+    public function add_preco() {
+        try {
+            $fornecedor_id = $this->input->post('fornecedor_des') - 0;
+            $insumo_id = $this->input->post('insumo_des') - 0;
+            $valor = $this->input->post('valor');
+            $vigencia = $this->input->post('vigencia');
+
+            if ($fornecedor_id == 0 || $insumo_id == 0 || $valor == 0 || $vigencia == '') {
+                return;
+            }
+            
+            $vigencia = date('Y-m-d', strtotime($vigencia));
+
+            $rs = new Insumo_x_fornecedor_model();
+            $rs->fornecedor_id = $fornecedor_id;
+            $rs->insumo_id = $insumo_id;
+            $rs->vigencia = $vigencia;
+            $rs->valor = $valor;
+            $rs->save();
+
+            $data['sucess'] = TRUE;
+        } catch (Exception $e) {
+            $data['sucess'] = FALSE;
+            $data['error'] = $e->getMessage();
+        }
+
+        echo json_encode($data);
     }
 
 }
