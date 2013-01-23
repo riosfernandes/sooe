@@ -107,12 +107,16 @@ class Insumo extends MY_Non_Public_Controller {
 
     function get_preco() {
         $fornecedor_id = $this->input->post('fornecedor_desc') + 0;
+        $insumo_id = $this->input->post('insumo_desc') + 0;
 
         if ($fornecedor_id == 0) {
             return;
         }
 
         $wheres['fornecedor_id'] = $fornecedor_id;
+        if ($insumo_id != 0) {
+            $wheres['insumo_id'] = $insumo_id;
+        }
 
         $rs = new Insumo_x_fornecedor_model();
         $rs->where($wheres);
@@ -172,7 +176,7 @@ class Insumo extends MY_Non_Public_Controller {
             if ($fornecedor_id == 0 || $insumo_id == 0 || $valor == 0 || $vigencia == '') {
                 return;
             }
-            
+
             $vigencia = date('Y-m-d', strtotime($vigencia));
 
             $rs = new Insumo_x_fornecedor_model();
