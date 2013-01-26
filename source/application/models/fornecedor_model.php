@@ -30,6 +30,16 @@ class Fornecedor_model extends DataMapper {
             'rules' => array('required', 'trim', 'min_length' => 3, 'max_length' => 255)
         )
     );
+    
+    var $has_many = array(
+        'insumo' => array(
+            'class' => 'insumo_model',
+            'other_field' => 'fornecedor',
+            'join_self_as' => 'fornecedor',
+            'join_other_as' => 'insumo',
+            'join_table' => 'insumo_x_fornecedor',
+        )
+    );
 
     function __construct($id = NULL) {
         parent::__construct($id);

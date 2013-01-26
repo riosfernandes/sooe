@@ -6,6 +6,7 @@ if (!defined('BASEPATH'))
 class Insumo_x_fornecedor_model extends DataMapper {
 
     var $table = 'insumo_x_fornecedor';
+    var $has_one = array('insumo_model', 'fornecedor_model');
 
     function __construct($id = NULL) {
         parent::__construct($id);

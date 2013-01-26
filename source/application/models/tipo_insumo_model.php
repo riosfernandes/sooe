@@ -6,6 +6,9 @@ if (!defined('BASEPATH'))
 class Tipo_insumo_model extends DataMapper {
 
     var $table = 'tipo_insumo';
+    
+    var $has_many = array('insumo_model');
+    
 //    /*
 //     * relacionamentos um para muitos
 //     */

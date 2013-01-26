@@ -4,7 +4,7 @@ function main()
 {        
     $("#div_insumo").hide();
     $("#divTableResult").hide();
-    $('#form_preco').hide();
+    $('#form_preco').hide();  
 
     $('#fornecedor').autocomplete({
         source: function( request, response ) {
@@ -58,44 +58,103 @@ function main()
         },
         minLength: 3,
         select: function( event, ui ) {
-            slide_down_callback_preco();
+            slide_down_callback_insumo();
         }
     });
 }
-//
-//function filter_preco(event, ui){
-//    /* filtrar os preços listados conforme o
-//     * insumo informado.
-//     **/
-//    $('#form_preco').load('insumo/get_preco',
-//    {
-//        fornecedor_desc         :$('#fornecedor').val(),
-//        insumo_desc             :$('#insumo').val()
-//    });
-//}
+ 
+function slide_down_callback_insumo(){
+     $("#resultado").flexReload();
+}
 
 function select_insumo(event, ui ){
     /* a lista de preços já associados deve surgir para o usuário visualizar logo após a seleção do     
      **/
-    $('#form_preco').show();
+    $('#form_preco').show("fast", callback_insumo);
 //    $('#form_preco').slideDown('0', slide_down_callback_preco); // garante que só seja executado após o slow acontecer
 }
 
-function slide_down_callback_preco(){
-    /*listar os preços para o fornecedor
-     *e insumo selecionados */            
-    resultado = $("#resultado");
-            
-    resultado.html('<p>Carregando...</p>');
-    resultado.load('insumo/get_preco',
+function slide_down_callback_preco(){   
+    colModel = [
     {
-        fornecedor_desc         :$('#fornecedor').val(),
-        insumo_desc             :$('#insumo').val()
+        display: 'Insumo', 
+        name : 'insumo_des', 
+        width : 40, 
+        sortable : true, 
+        align: 'center'
     },
-    callback_insumo);
+
+    {
+        display: 'Unidade', 
+        name : 'insumo_un', 
+        width : 180, 
+        sortable : true, 
+        align: 'left'
+    },
+
+    {
+        display: 'Valor', 
+        name : 'valor', 
+        width : 120, 
+        sortable : true, 
+        align: 'left'
+    },
+
+    {
+        display: 'Vigência', 
+        name : 'vigencia', 
+        width : 130, 
+        sortable : true, 
+        align: 'center' 
+    }];
+    
+    search_items = [
+    {
+        display: 'Insumo', 
+        name : 'descricao', 
+        isdefault: true
+    }
+    ];
+    
+    $("#resultado").flexigrid({
+        url: 'insumo/get_preco',
+        dataType: 'json',
+        colModel : colModel,
+        searchitems : search_items,
+        sortname: "insumo_id",
+        sortorder: "asc",
+        usepager: true,
+        title: 'Preços',
+        useRp: true,
+        rp: 50,
+        showTableToggleBtn: true,
+        singleSelect: true,
+        onSubmit: get_params_flexi
+    });   
 }
 
+function get_params_flexi()
+{
+    var dt = 
+    [ 
+    {
+        name: 'fornecedor_desc', 
+        value: $('#fornecedor').val()
+    }, 
+    {
+        name: 'insumo_desc', 
+        value: $('#insumo').val()
+    }
+    ];
+            
+    $("#resultado").flexOptions({
+        params: dt
+    });
+    
+    return true;
 
+}
+    
 function callback_insumo(data){
     $('#btn_incluir_preco').click(add_preco);
     $('#txt_data_vigencia').datepicker();
@@ -110,6 +169,6 @@ function add_preco(e){
         vigencia            : $('#txt_data_vigencia').val() // datepicker( "getDate" )
     }
   
-    $.post('insumo/add_preco', data, slide_down_callback_preco, 'JSON');    
-    $('#form_preco').hide();
+    $.post('insumo/add_preco', data, slide_down_callback_insumo, 'JSON');    
+//    $('#form_preco').hide();
 }

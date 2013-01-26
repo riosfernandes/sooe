@@ -42,13 +42,17 @@ class Insumo extends MY_Non_Public_Controller {
         return $crud->render();
     }
 
-    function show_preco_insumo() {
+    public function show_preco_insumo() {
         $this->template->set(
-                'css_files', array($this->get_css_formatado('insumo')
+                'css_files', array(
+            $this->get_css_formatado('insumo'),
+            $this->get_css_formatado('flexigrid/flexigrid'),
+            $this->get_css_formatado('flexigrid/flexigrid.pack')
                 )
         );
         $this->template->set('js_files', array(
-//            $this->get_js_formatado('jquery.easyui.min'),
+            $this->get_js_formatado('flexigrid/flexigrid'),
+            $this->get_js_formatado('flexigrid/flexigrid.pack'),
             $this->get_js_formatado('insumo')
         ));
 
@@ -105,65 +109,118 @@ class Insumo extends MY_Non_Public_Controller {
         }
     }
 
-    function get_preco() {
+    public function get_preco() {
         $fornecedor_id = $this->input->post('fornecedor_desc') + 0;
-        $insumo_id = $this->input->post('insumo_desc') + 0;
 
         if ($fornecedor_id == 0) {
             return;
         }
 
-        $wheres['fornecedor_id'] = $fornecedor_id;
-        if ($insumo_id != 0) {
-            $wheres['insumo_id'] = $insumo_id;
+        $insumo_id = $this->input->post('insumo_desc') + 0;
+
+        $page = 1;
+        $sortname = 'id';
+        $sortorder = 'asc';
+        $qtype = '';  // Search column
+        $query = '';  // Search string
+
+        if (isset($_POST['insumo_desc'])) {
+            $insumo_id = $this->input->post('insumo_desc') + 0;
+        }
+        if (isset($_POST['page'])) {
+            $page = $this->input->post('page');
+        }
+        if (isset($_POST['sortname'])) {
+            $sortname = $this->input->post('sortname');
+        }
+        if (isset($_POST['sortorder'])) {
+            $sortorder = $this->input->post('sortorder');
+        }
+        if (isset($_POST['qtype'])) {
+            $qtype = $this->input->post('qtype');
+        }
+        if (isset($_POST['query'])) {
+            $query = $this->input->post('query');
+        }
+        if (isset($_POST['rp'])) {
+            $rp = $this->input->post('rp');
         }
 
-        $rs = new Insumo_x_fornecedor_model();
-        $rs->where($wheres);
+        $pageStart = ($page - 1) * $rp;
+
+        $rs = new Fornecedor_model($fornecedor_id);
+        $total_registros = $rs->get()->result_count();
 
         $data = array();
-        $total_registros = $rs->get()->result_count();
         $data["total"] = $total_registros;
+        $data['page'] = $page;
+        $data['rows'] = array();
 
-        if ($total_registros > 0) {
-            // tem que repetir, pois depois do get() o DataMapper apagar as clausulas wheres.
-            $rs->where($wheres);
-            foreach ($rs->get() as $r) {
-                //dados do insumo
-                $insumo_model = new Insumo_model();
-                $insumo_obj = $insumo_model->where('id', $r->insumo_id)->get();
-                $insumo['id'] = $insumo_obj->id;
-                $insumo['descricao'] = $insumo_obj->descricao;
-                $insumo['codigo'] = $insumo_obj->codigo;
+        if ($qtype != '' && $query != '')
+            $rs->insumo->like($qtype, $query);
 
-                $tipo_insumo_model = new Tipo_insumo_model();
-                $tipo_insumo_obj = $tipo_insumo_model->where('id', $insumo_obj->tipo_insumo_id)->get();
-                $tipo_insumo['id'] = $tipo_insumo_obj->id;
-                $tipo_insumo['descricao'] = $tipo_insumo_obj->descricao;
-                $insumo['tipo_insumo'] = $tipo_insumo;
+        if ($insumo_id != 0)
+            $rs->insumo->where('id', $insumo_id);
 
-                $tipo_unidade_model = new Tipo_unidade_model();
-                $tipo_unidade_obj = $tipo_unidade_model->where('id', $insumo_obj->tipo_unidade_id)->get();
-                $tipo_unidade['id'] = $tipo_unidade_obj->id;
-                $tipo_unidade['descricao'] = $tipo_unidade_obj->descricao;
-                $tipo_unidade['sigla'] = $tipo_unidade_obj->sigla;
-                $insumo['tipo_unidade'] = $tipo_unidade;
-                //dados do fornecedor
-                $fornecedor_model = new Fornecedor_model();
-                $fornecedor_obj = $fornecedor_model->where('id', $fornecedor_id)->get();
-                $fornecedor['id'] = $fornecedor_obj->id;
-                $fornecedor['nome'] = $fornecedor_obj->nome;
-                $fornecedor['codigo'] = $fornecedor_obj->codigo;
+        $rs->insumo->get($rp, $pageStart);
 
-                $data['result'][$r->insumo_id]['insumo'] = $insumo;
-                $data['result'][$r->insumo_id]['fornecedor'] = $fornecedor;
-                $data['result'][$r->insumo_id]['vigencia'] = strftime("%d/%m/%Y %H:%M:%S", strtotime($r->vigencia));
-                $data['result'][$r->insumo_id]['valor'] = $r->valor;
-                $data['result'][$r->insumo_id]['cadastro'] = $r->cadastro;
+        $is_insumo_especifico = ($insumo_id != 0);
+
+
+        if ($is_insumo_especifico) {
+            $custo = new Insumo_x_fornecedor_model();
+            $custo->start_cache();
+            $custo->where('insumo_id', $rs->insumo->id);
+            $custo->where('fornecedor_id', $rs->id);
+            $custo->stop_cache();
+
+            foreach ($custo->get() as $c) {
+                $data['rows'][] = array(
+                    'id' => $rs->insumo->id,
+                    'cell' =>
+                    array(
+                        'insumo_id' => $rs->insumo->id,
+                        'insumo_des' => $rs->insumo->descricao,
+                        'insumo_un' => $rs->insumo->unidade->get()->sigla,
+                        'vigencia' => strftime("%d/%m/%Y %H:%M:%S", strtotime($c->vigencia)),
+                        'valor' => $c->valor
+                    )
+                );
+            }
+        } else {
+            $id;
+            foreach ($rs->insumo as $insumo) {
+
+                if (empty($id) || $id != $insumo->id)
+                    $id = $insumo->id;
+                else
+                    continue;
+
+                $custo = new Insumo_x_fornecedor_model();
+                $custo->start_cache();
+                $custo->where('insumo_id', $insumo->id);
+                $custo->where('fornecedor_id', $rs->id);
+                $custo->stop_cache();
+                $custo->select_max('vigencia'); // filtra por vigencia
+                $vigencia = $custo->get()->vigencia;
+                $custo->where('vigencia', $vigencia);
+                $valor = $custo->get()->valor;
+
+                $data['rows'][] = array(
+                    'id' => $insumo->id,
+                    'cell' =>
+                    array(
+                        'insumo_id' => $insumo->id,
+                        'insumo_des' => $insumo->descricao,
+                        'insumo_un' => $insumo->unidade->get()->sigla,
+                        'vigencia' => strftime("%d/%m/%Y %H:%M:%S", strtotime($vigencia)),
+                        'valor' => $valor
+                    )
+                );
             }
         }
 
-        echo $this->load->view('preco_insumo', $data);
+        echo json_encode($data);
     }
 
     public function add_preco() {
@@ -194,7 +251,6 @@ class Insumo extends MY_Non_Public_Controller {
 
         echo json_encode($data);
     }
-
 }
 
 /* End of file insumo.php */

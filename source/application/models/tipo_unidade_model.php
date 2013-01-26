@@ -6,7 +6,15 @@ if (!defined('BASEPATH'))
 class Tipo_unidade_model extends DataMapper {
 
     var $table = 'tipo_unidade';
-
+    var $has_many = array(
+        'insumo' => array(
+            'class' => 'insumo_model',
+            'other_field' => 'unidade',
+            'join_self_as' => 'tipo_unidade',
+            'join_other_as' => 'id',
+            'join_table' => 'insumo'
+        )
+    );
     var $created_field = 'cadastro';
     var $local_time = TRUE;
     var $validation = array(
