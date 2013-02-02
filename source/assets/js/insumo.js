@@ -64,7 +64,7 @@ function main()
 }
  
 function slide_down_callback_insumo(){
-     $("#resultado").flexReload();
+    $("#resultado").flexReload();
 }
 
 function select_insumo(event, ui ){
@@ -107,6 +107,19 @@ function slide_down_callback_preco(){
         sortable : true, 
         align: 'center' 
     }];
+
+    buttons = [
+    {
+        name: 'Delete', 
+        bclass: 'delete', 
+        onpress : remove_custo
+    },
+
+    {
+        separator: true
+    }
+    ];
+
     
     search_items = [
     {
@@ -120,6 +133,7 @@ function slide_down_callback_preco(){
         url: 'insumo/get_preco',
         dataType: 'json',
         colModel : colModel,
+        buttons : buttons,
         searchitems : search_items,
         sortname: "insumo_id",
         sortorder: "asc",
@@ -128,9 +142,53 @@ function slide_down_callback_preco(){
         useRp: true,
         rp: 50,
         showTableToggleBtn: true,
-        singleSelect: true,
+        singleSelect: false,
         onSubmit: get_params_flexi
     });   
+}
+
+function remove_custo(e, grid){
+       
+    if($('.trSelected',grid).length>0){
+        //        if(!confirm('Delete ' + $('.trSelected',grid).length + ' items?'))
+        //            return;
+         
+         
+        var items = $('.flexigrid .trSelected');
+        
+        var insumo_id_list = [];
+        
+        for(i=0;i<items.length;i++){
+            array = 
+            { 
+                insumo_id : items[i].id.substr(3),
+                insumo_desc : $($(items[i]).find('td div')[0]).text(),
+                vigencia  : $($(items[i]).find('td div')[3]).text()
+            }
+            
+            insumo_id_list.push(array);
+        }
+        
+        data = {
+            insumo_id_list : insumo_id_list,
+            fornecedor_desc : $('#fornecedor').val()
+        }
+        
+        $.post(
+            "insumo/remove_preco",
+            data, 
+            callback_remove_custo, 
+            "JSON");
+    }
+}
+
+function callback_remove_custo(data){
+    if(!data.sucess)
+    {
+        alert(data.error)
+    }
+
+    $('#resultado').flexReload();
 }
 
 function get_params_flexi()

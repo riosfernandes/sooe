@@ -148,7 +148,10 @@ class Insumo extends MY_Non_Public_Controller {
 
         $pageStart = ($page - 1) * $rp;
 
-        $rs = new Fornecedor_model($fornecedor_id);
+        $rs = new Fornecedor_model();
+        $rs->start_cache();
+        $rs->where('id', $fornecedor_id);
+        $rs->stop_cache();
         $total_registros = $rs->get()->result_count();
 
         $data = array();
@@ -175,14 +178,16 @@ class Insumo extends MY_Non_Public_Controller {
             $custo->stop_cache();
 
             foreach ($custo->get() as $c) {
+                $vigencia = strftime("%d/%m/%Y %H:%M:%S", strtotime($c->vigencia));
+                $id = $rs->insumo->id;
                 $data['rows'][] = array(
-                    'id' => $rs->insumo->id,
+                    'id' => $id,
                     'cell' =>
                     array(
                         'insumo_id' => $rs->insumo->id,
                         'insumo_des' => $rs->insumo->descricao,
                         'insumo_un' => $rs->insumo->unidade->get()->sigla,
-                        'vigencia' => strftime("%d/%m/%Y %H:%M:%S", strtotime($c->vigencia)),
+                        'vigencia' => $vigencia,
                         'valor' => $c->valor
                     )
                 );
@@ -224,6 +229,7 @@ class Insumo extends MY_Non_Public_Controller {
     }
 
     public function add_preco() {
+
         try {
             $fornecedor_id = $this->input->post('fornecedor_des') - 0;
             $insumo_id = $this->input->post('insumo_des') - 0;
@@ -251,6 +257,35 @@ class Insumo extends MY_Non_Public_Controller {
 
         echo json_encode($data);
     }
+
+    public function remove_preco() {
+
+        try {
+            $fornecedor_id = $this->input->post('fornecedor_desc') - 0;
+            $insumo_id_list = $this->input->post('insumo_id_list');
+
+            if ($fornecedor_id == 0 || $insumo_id_list == 0) {
+                throw new Exception("Fornecedor ou insumo inválido!");
+            }
+
+            $rs = new Insumo_x_fornecedor_model();
+
+            foreach ($insumo_id_list as $item) {
+                $rs->where('vigencia', $item['vigencia']);
+                $rs->where('fornecedor_id', $fornecedor_id);
+                $rs->where('insumo_id', $item['insumo_id'])->get();
+                $rs->delete();
+            }
+
+            $data['sucess'] = TRUE;
+        } catch (Exception $e) {
+            $data['sucess'] = FALSE;
+            $data['error'] = $e->getMessage();
+        }
+
+        echo json_encode($data);
+    }
+
 }
 
 /* End of file insumo.php */

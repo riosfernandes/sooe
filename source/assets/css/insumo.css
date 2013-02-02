@@ -20,3 +20,11 @@
 .ui-widget input:focus{
     background-color: #fff;
 }
+
+.flexigrid div.fbutton .add {
+    background: url(../images/add.png) no-repeat center left;
+}
+
+.flexigrid div.fbutton .delete {
+    background: url(../images/close.png) no-repeat center left;
+}
