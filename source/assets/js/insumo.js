@@ -2,79 +2,6 @@ $(main);
 
 function main()
 {        
-    $("#div_insumo").hide();
-    $("#divTableResult").hide();
-    $('#form_preco').hide();  
-
-    $('#fornecedor').autocomplete({
-        source: function( request, response ) {
-            $.ajax({
-                url: "insumo/find_fornecedor",
-                type: 'POST',
-                dataType: "json",
-                data: {
-                    'term'          : request.term
-                },
-                success: function( data ) {
-                    response( $.map( data.result, function( item ) {
-                        return {
-                            id: item.id,
-                            label: item.label,
-                            value: item.descricao
-                        }
-                    }));
-                }
-            });
-        },
-        minLength: 3,
-        select: function( event, ui ) {     
-            $("#div_insumo").show();
-            $('#insumo').focus();
-            slide_down_callback_preco();
-            select_insumo(event, ui);
-        }
-    });  
-    
-    $('#insumo').autocomplete({
-        source: function( request, response ) {
-            $.ajax({
-                url: "insumo/find_insumo",
-                type: 'POST',
-                dataType: "json",
-                data: {
-                    'term'                     : request.term,
-                    'fornecedor_desc'          : $('#fornecedor').val()
-                },
-                success: function( data ) {
-                    response( $.map( data.result, function( item ) {
-                        return {
-                            id: item.id,
-                            label: item.label,
-                            value: item.descricao
-                        }
-                    }));
-                }
-            });
-        },
-        minLength: 3,
-        select: function( event, ui ) {
-            slide_down_callback_insumo();
-        }
-    });
-}
- 
-function slide_down_callback_insumo(){
-    $("#resultado").flexReload();
-}
-
-function select_insumo(event, ui ){
-    /* a lista de preços já associados deve surgir para o usuário visualizar logo após a seleção do     
-     **/
-    $('#form_preco').show("fast", callback_insumo);
-//    $('#form_preco').slideDown('0', slide_down_callback_preco); // garante que só seja executado após o slow acontecer
-}
-
-function slide_down_callback_preco(){   
     colModel = [
     {
         display: 'Insumo', 
@@ -144,14 +71,98 @@ function slide_down_callback_preco(){
         showTableToggleBtn: true,
         singleSelect: false,
         onSubmit: get_params_flexi
-    });   
+    });
+    
+    $(document).ready(function() {
+        hide();
+    })
+    
+    $('#fornecedor').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: "insumo/find_fornecedor",
+                type: 'POST',
+                dataType: "json",
+                data: {
+                    'term'          : request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.result, function( item ) {
+                        return {
+                            id: item.id,
+                            label: item.label,
+                            value: item.descricao
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 3,
+        select: function( event, ui ) {     
+            $("#div_insumo").show();
+            $('.flexigrid').show();
+            $('#insumo').val("");
+            $('#insumo').focus();
+            slide_down_callback_preco();
+            select_insumo(event, ui);
+        }
+    });  
+    
+    $('#insumo').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: "insumo/find_insumo",
+                type: 'POST',
+                dataType: "json",
+                data: {
+                    'term'                     : request.term,
+                    'fornecedor_desc'          : $('#fornecedor').val()
+                },
+                success: function( data ) {
+                    response( $.map( data.result, function( item ) {
+                        return {
+                            id: item.id,
+                            label: item.label,
+                            value: item.descricao
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 3,
+        select: function( event, ui ) {
+            slide_down_callback_insumo();
+        }
+    });
+}
+
+function hide(){
+    $("#div_insumo").hide();
+    $("#divTableResult").hide();
+    $('#form_preco').hide();  
+    $('.flexigrid').hide();  
+}
+ 
+function slide_down_callback_insumo(){
+    $("#resultado").flexReload();
+}
+
+function select_insumo(event, ui ){
+    /* a lista de preços já associados deve surgir para o usuário visualizar logo após a seleção do     
+     **/
+    $('#form_preco').show("fast", callback_insumo);
+//    $('#form_preco').slideDown('0', slide_down_callback_preco); // garante que só seja executado após o slow acontecer
+}
+
+function slide_down_callback_preco(){  
+    $("#resultado").flexReload();
 }
 
 function remove_custo(e, grid){
        
     if($('.trSelected',grid).length>0){
-        //        if(!confirm('Delete ' + $('.trSelected',grid).length + ' items?'))
-        //            return;
+        if(!confirm('Delete ' + $('.trSelected',grid).length + ' items?'))
+            return;
          
          
         var items = $('.flexigrid .trSelected');

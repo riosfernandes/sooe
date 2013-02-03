@@ -276,7 +276,6 @@ class Insumo extends MY_Non_Public_Controller {
                 throw new Exception("Fornecedor ou insumo inválido!");
             }
 
-
             foreach ($insumo_id_list as $item) {
                 $rs = new Insumo_x_fornecedor_model();
                 $rs->where('vigencia', $item['vigencia']);
