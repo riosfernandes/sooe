@@ -175,10 +175,11 @@ class Insumo extends MY_Non_Public_Controller {
             $custo->start_cache();
             $custo->where('insumo_id', $rs->insumo->id);
             $custo->where('fornecedor_id', $rs->id);
+            $custo->where('deleted', 0);
             $custo->stop_cache();
 
             foreach ($custo->get() as $c) {
-                $vigencia = strftime("%d/%m/%Y %H:%M:%S", strtotime($c->vigencia));
+                $vigencia = strftime("%Y-%m-%d %H:%M:%S", strtotime($c->vigencia));
                 $id = $rs->insumo->id;
                 $data['rows'][] = array(
                     'id' => $id,
@@ -205,11 +206,18 @@ class Insumo extends MY_Non_Public_Controller {
                 $custo->start_cache();
                 $custo->where('insumo_id', $insumo->id);
                 $custo->where('fornecedor_id', $rs->id);
+                $custo->where('deleted', 0);
                 $custo->stop_cache();
                 $custo->select_max('vigencia'); // filtra por vigencia
                 $vigencia = $custo->get()->vigencia;
+                
+                if($vigencia == NULL)
+                    continue;
+                
                 $custo->where('vigencia', $vigencia);
                 $valor = $custo->get()->valor;
+                if($valor == NULL)
+                    continue;
 
                 $data['rows'][] = array(
                     'id' => $insumo->id,
@@ -218,7 +226,7 @@ class Insumo extends MY_Non_Public_Controller {
                         'insumo_id' => $insumo->id,
                         'insumo_des' => $insumo->descricao,
                         'insumo_un' => $insumo->unidade->get()->sigla,
-                        'vigencia' => strftime("%d/%m/%Y %H:%M:%S", strtotime($vigencia)),
+                        'vigencia' => strftime("%Y-%m-%d %H:%M:%S", strtotime($vigencia)),
                         'valor' => $valor
                     )
                 );
@@ -268,13 +276,12 @@ class Insumo extends MY_Non_Public_Controller {
                 throw new Exception("Fornecedor ou insumo inválido!");
             }
 
-            $rs = new Insumo_x_fornecedor_model();
 
             foreach ($insumo_id_list as $item) {
+                $rs = new Insumo_x_fornecedor_model();
                 $rs->where('vigencia', $item['vigencia']);
                 $rs->where('fornecedor_id', $fornecedor_id);
-                $rs->where('insumo_id', $item['insumo_id'])->get();
-                $rs->delete();
+                $rs->where('insumo_id', $item['insumo_id'])->update(array('deleted' => 1, 'date_deleted' => date('Y-m-d G:i:s')));
             }
 
             $data['sucess'] = TRUE;
